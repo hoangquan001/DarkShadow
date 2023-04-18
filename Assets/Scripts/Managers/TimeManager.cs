@@ -9,16 +9,20 @@ public class TimeManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public delegate void callback();
-    class Task
+    class Timer
     {
         callback cb;
-        public float timer;
+        public float interval;
         public float timeOut;
-        float Token;
-        public Task(float timeOut, callback cb)
+        ulong Token;
+        public Timer(float timeOut, callback cb, ulong Token)
+        {
+            Reset(timeOut, cb, Token);
+        }
+        public void Reset(float timeOut, callback cb, ulong Token)
         {
             this.cb = cb;
-            this.timer = 0;
+            this.interval = 0;
             this.timeOut = timeOut;
         }
         public void call()
@@ -26,6 +30,7 @@ public class TimeManager : MonoBehaviour
             cb();
         }
     }
+    ulong curtoken = 0;
     static TimeManager _instance = null;
     static public TimeManager Instance
     {
@@ -41,42 +46,44 @@ public class TimeManager : MonoBehaviour
         }
 
     }
-    int index = 0;
-    Dictionary<string, Task> taskMgr = new Dictionary<string, Task>();
-    Queue<string> expiredToken = new Queue<string>();
+    Queue<Timer> _pool = new Queue<Timer>();
+    Dictionary<ulong, Timer> curTimers = new Dictionary<ulong, Timer>();
+    Queue<ulong> expiredToken = new Queue<ulong>();
     // @params return token 
-    public string setTimeOut(float timeOut, callback cb)
+    public ulong setTimeOut(float timeOut, callback cb)
     {
-        string random = RandomStringGenerator(10);
-        Task task = new Task(timeOut, cb);
-        taskMgr[random] = task;
-        return random;
+        curtoken += 1;
+
+        Timer timer = _pool.Count != 0 ? _pool.Dequeue() : null;
+        if (timer != null)
+            timer.Reset(timeOut, cb, curtoken);
+        else
+            timer = new Timer(timeOut, cb, curtoken);
+
+        curTimers[curtoken] = timer;
+        return curtoken;
     }
 
-    string RandomStringGenerator(int lenght)
+    public bool killTask(ulong taskToken)
     {
-        string result = "";
-        for (int i = 0; i < lenght; i++)
+        if (curTimers.ContainsKey(taskToken))
         {
-            char c = (char)(Random.Range(48, 90));
-            result += c;
-        }
-        return result;
-    }
-    public bool killTask(string taskToken)
-    {
-        if (taskMgr.ContainsKey(taskToken))
-        {
-            taskMgr.Remove(taskToken);
+            curTimers.Remove(taskToken);
+
             return true;
         }
         return false;
     }
-    public bool isExpiredToken(string token)
+    public bool isExpiredToken(ulong token)
     {
-        return taskMgr.ContainsKey(token);
+        return curTimers.ContainsKey(token);
     }
-
+    public float getIntervalTime(ulong taskToken)
+    {
+        if (isExpiredToken(taskToken))
+            return curTimers[curtoken].interval;
+        return -1;
+    }
     void Start()
     {
         _instance = this;
@@ -90,22 +97,23 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
 
-        foreach (var item in taskMgr)
+        foreach (var item in curTimers)
         {
-            string token = item.Key;
-            Task task = item.Value;
-            task.timer += Time.deltaTime;
-            if (task.timer >= task.timeOut)
+            Timer timer = item.Value;
+            timer.interval += Time.deltaTime;
+            if (timer.interval >= timer.timeOut)
             {
-                task.call();
-                expiredToken.Enqueue(token);
+                timer.call();
+                expiredToken.Enqueue(item.Key);
+                _pool.Enqueue(timer);
+
             }
         }
 
         while (expiredToken.Count != 0)
         {
-            string token = expiredToken.Dequeue();
-            taskMgr.Remove(token);
+            ulong token = expiredToken.Dequeue();
+            curTimers.Remove(token);
         };
 
 

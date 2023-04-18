@@ -71,8 +71,6 @@ public class PlayerCharacter : MonoBehaviour
         //vFXController.stopTrailVFX();
         UI_GameHUD.Instance.setMaxHealth(healthPoint);
         UI_GameHUD.Instance.setMaxMana(ManaPoint);
-        TimeManager.Instance.setTimeOut(5, delegate { Debug.Log(123); });
-
     }
 
 

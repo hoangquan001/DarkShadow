@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class BossTalkingController : MonoBehaviour
 {
-    [TextArea] [SerializeField] List<string> TextOnStart;
-    [TextArea] [SerializeField] List<string> TextOnEnd;
+    [TextArea][SerializeField] List<string> TextOnStart;
+    [TextArea][SerializeField] List<string> TextOnEnd;
     [SerializeField] GameObject BoxText;
     Text textBox;
     // Use this for initialization
@@ -17,6 +17,7 @@ public class BossTalkingController : MonoBehaviour
     void Start()
     {
         textBox = BoxText.GetComponentInChildren<Text>();
+        BoxText.SetActive(false);
         delaytimer = 0;
     }
 
@@ -28,7 +29,7 @@ public class BossTalkingController : MonoBehaviour
         {
             talk(TextOnStart);
         }
-         
+
         if (state == 2)
         {
             talk(TextOnEnd);
@@ -47,7 +48,7 @@ public class BossTalkingController : MonoBehaviour
         state = 2;
         isDone = false;
     }
-    
+
 
     public bool isDone = false;
     void talk(List<string> listText)
@@ -55,13 +56,13 @@ public class BossTalkingController : MonoBehaviour
         if (idx < listText.Count)
         {
             delaytimer -= Time.deltaTime;
-            if (!isTextRunning  && delaytimer < 0)
+            if (!isTextRunning && delaytimer < 0)
             {
                 StartCoroutine(printSequence(listText[idx]));
                 idx += 1;
             }
         }
-        else if(!isTextRunning)
+        else if (!isTextRunning)
         {
             idx = 0;
             state = 0;
