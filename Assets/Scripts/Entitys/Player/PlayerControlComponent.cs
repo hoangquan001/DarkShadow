@@ -6,7 +6,7 @@ using UnityEngine;
 public enum PlayerSkill { None, Dash, Attack, FireMagic };
 public enum PlayerMovement { Idle, Run, Jump, Fall };
 
-public class PlayerController : MonoBehaviour
+public class PlayerControlComponent : XComponent
 {
     // Start is called before the first frame update
     [Header("Physical Value")]
@@ -51,15 +51,15 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        PlayerCollider = GetComponent<BoxCollider2D>();
-        player = GetComponent<PlayerCharacter>();
+        rb2d = host.GetComponent<Rigidbody2D>();
+        PlayerCollider = host.GetComponent<BoxCollider2D>();
+        player = host.GetComponent<PlayerCharacter>();
         curSkill = PlayerSkill.None;
-        playerAudio = GetComponent<PlayerAudio>();
+        playerAudio = host.GetComponent<PlayerAudio>();
     }
 
 
-    void Update()
+    public override void Update()
     {
         updateStates();
         moveInput = Vector2.zero;
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    public override void FixedUpdate()
     {
 
         updateGravity();
@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
         {
             int direct = isFacingRight ? 1 : -1;
             rb2d.velocity = Vector3.zero;
-            rb2d.MovePosition(transform.position + new Vector3(direct * player.dashSpeed * Time.fixedDeltaTime, 0));
+            rb2d.MovePosition(host.transform.position + new Vector3(direct * player.dashSpeed * Time.fixedDeltaTime, 0));
             DashDistanceCounter += (player.dashSpeed * Time.fixedDeltaTime);
         }
         else
@@ -235,9 +235,9 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-        Vector3 loclaScale = transform.localScale;
+        Vector3 loclaScale = host.transform.localScale;
         loclaScale.x *= -1;
-        transform.localScale = loclaScale;
+        host.transform.localScale = loclaScale;
         isFacingRight = !isFacingRight;
     }
 

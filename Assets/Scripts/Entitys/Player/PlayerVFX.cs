@@ -10,12 +10,12 @@ public class PlayerVFX : MonoBehaviour
     public GameObject TrailVFX;
     //public GameObject Dust;
 
-    private PlayerController playerControl;
+    // private PlayerController playerControl;
 
     void Start()
     {
 
-        playerControl = GetComponent<PlayerController>();
+        // playerControl = GetComponent<PlayerController>();
     }
     public void playTrailVFX()
     {
@@ -35,13 +35,13 @@ public class PlayerVFX : MonoBehaviour
     {
 
 
-        if(playerControl.movementState == PlayerMovement.Run)
-        {
-            DustVFX.SetActive(true);
-        }
-        else
-        {
-            DustVFX.SetActive(false);
-        }
+        // if(playerControl.movementState == PlayerMovement.Run)
+        // {
+        //     DustVFX.SetActive(true);
+        // }
+        // else
+        // {
+        //     DustVFX.SetActive(false);
+        // }
     }
 }

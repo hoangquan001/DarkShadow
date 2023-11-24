@@ -58,7 +58,7 @@ namespace DarkShadow
         public BossFSM bossState;
 
 
-        public StateMachine stateMachine;
+        // public StateMachine stateMachine;
 
 
         float invisibleTimer = 0;
