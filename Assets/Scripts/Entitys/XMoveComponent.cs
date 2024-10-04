@@ -23,6 +23,8 @@ public class XMoveComponent : XComponent
     }
     private void OnMove(EventArgs e)
     {
-        _entity.ApplyMove((e as MoveArgs).dir);
+        MoveArgs args = e as MoveArgs;
+        _entity.Rotation(args.dir.x > 0 ? 1 : -1);
+        _entity.ApplyMove(args.dir);
     }
 }

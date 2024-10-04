@@ -1,21 +1,21 @@
 ﻿
 using System.Collections.Generic;
+using DarkShadow;
 
-namespace DarkShadow
-{
-    public class StateMachine : XComponent
+
+public class StateMachine
     {
         public Dictionary<StateType, IState> DirStates = new Dictionary<StateType, IState>();
-
         IState currentState;
+
 
         private int [,] StateMap  = null;
 
-        // public StateMachine()
-        // {
-        //     Init();
-        // }
-        public override void  Init()
+        public StateMachine()
+        {
+            Init();
+        }
+        public void  Init()
         {
             currentState = null;
         }
@@ -36,14 +36,9 @@ namespace DarkShadow
             currentState.OnEnter();
         }
 
-        public override void Update()
+        public void Update()
         {
-            currentState.Update();
-        }
-        public override void  FixedUpdate()
-        {
-            currentState.FixedUpdate();
+            currentState.UpdateAction();
         }
 
     }
-}

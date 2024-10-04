@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using DarkShadow;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Scripting.APIUpdating;
 
 
@@ -9,12 +11,6 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class XPlayer: XEntity 
 {
-    Rigidbody2D rb2d ;
-    public override void Awake()
-    {
-        base.Awake();
-        rb2d  = GetComponent<Rigidbody2D>();
-    }
     public override void OnCreate()
     {
 
@@ -24,15 +20,19 @@ public class XPlayer: XEntity
     public override void InitComponent()
     {
         // AddXComponent(new PlayerControlComponent());
-        AddXComponent(XComponent.CreateComponent<XSkillComponent>());
-        AddXComponent(XComponent.CreateComponent<XMoveComponent>());
-        AddXComponent(XComponent.CreateComponent<XIdleComponent>());
-        AddXComponent(XComponent.CreateComponent<XDashComponent>());
+        XComponent xSkillComponent = AddXComponent(XComponent.CreateComponent<XSkillComponent>());
+        var xMoveComponent = AddXComponent(XComponent.CreateComponent<XMoveComponent>());
+        var xIdleComponent = AddXComponent(XComponent.CreateComponent<XIdleComponent>());
+        var xDashComponent = AddXComponent(XComponent.CreateComponent<XDashComponent>());
+        stateMachine.addState(StateType.Idle, xIdleComponent as IState);
+        stateMachine.addState(StateType.Move, xMoveComponent as IState);
+        stateMachine.addState(StateType.Dash, xDashComponent as IState);
+        // stateMachine.addState(StateType.Jump, xSkillComponent as IState);
     }
     public override void Update()
     {
         base.Update();
-        if(Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V))
         {
         }
         Vector2 dir = Vector2.zero;
@@ -41,10 +41,10 @@ public class XPlayer: XEntity
 
         if(Input.GetKeyDown(KeyCode.C))
         {
-            DashEventArgs @event = XSingleton<XEventArgsMgr>.Instance.GetEventArgs<DashEventArgs>();
+            DashEventArgs @event = XEventArgsMgr.GetEventArgs<DashEventArgs>();
             @event.DashRange = 10;
             @event.DashSpeed = 50;
-
+            @FireEvent(@event);
         }   
         if(Input.GetKeyDown(KeyCode.V))
         {
@@ -54,28 +54,20 @@ public class XPlayer: XEntity
 
         if(dir.x == 0)
         {
-            IdleEventArgs IdleArgs = XSingleton<XEventArgsMgr>.Instance.GetEventArgs<IdleEventArgs>();
+            IdleEventArgs IdleArgs = XEventArgsMgr.GetEventArgs<IdleEventArgs>();
             IdleArgs.dir = dir;
             @FireEvent(IdleArgs);
         }
         else
         {
-            MoveArgs moveArgs = XSingleton<XEventArgsMgr>.Instance.GetEventArgs<MoveArgs>();
+            MoveArgs moveArgs = XEventArgsMgr.GetEventArgs<MoveArgs>();
             moveArgs.dir = dir;
             @FireEvent(moveArgs);
         }
     }
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
-        Move(MoveDir, 10);
-    }
-    public void Move(Vector2 dir, float speed)
-    {
-        float xVelocity = rb2d.velocity.x;
-        xVelocity = dir.x * speed;
-        rb2d.velocity = new Vector2(xVelocity, rb2d.velocity.y);
-    }
+
+
+
     // public void Dash(Vector2 dir, float DashRange, float DashSpeed)
     // {
         

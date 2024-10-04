@@ -8,11 +8,10 @@ public interface IXComponent
     public IXComponent Interface    { get; }
     public  void Update();
     public  void FixedUpdate();
-    public void Fire(string Event, EventArgs args);
 }
 public class XComponent: IXComponent
 {
-    public IXComponent Interface    
+    public IXComponent Interface
     {
         get
         {
@@ -25,16 +24,16 @@ public class XComponent: IXComponent
       
     }
     private bool _enable  = true;
-    private Dictionary<string, UnityAction<EventArgs>> events = new Dictionary<string, UnityAction<EventArgs>>();
+    // private Dictionary<string, UnityAction<EventArgs>> events = new Dictionary<string, UnityAction<EventArgs>>();
     public bool Enable 
     {
         set
         {
-            _enable = false;
+            _enable = value;
         }
         get
         {
-            return true;
+            return _enable;
         }
     }
     public XObject host;
@@ -59,18 +58,7 @@ public class XComponent: IXComponent
     public virtual void OnDetach() { }
     protected void Register<T>(UnityAction<EventArgs> action)
     {
-        string key= typeof(T).Name;
-        if (!events.ContainsKey(key))
-        {
-            events.Add(key, action);
-        }
-    }
-    public void Fire(string Event, EventArgs args)
-    {
-        if (events.ContainsKey(Event))
-        {
-            events[Event].Invoke(args);
-        }
+        host.RegisterEvent<T>(action);
     }
     public virtual void RegisterEvents() 
     {

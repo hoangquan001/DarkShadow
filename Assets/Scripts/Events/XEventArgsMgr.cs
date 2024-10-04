@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class XEventArgsMgr  : XSingleton<XEventArgsMgr>
+public static class XEventArgsMgr
 {
-    private List<EventArgs> ListEventArgs = new List<EventArgs>();
-    public XEventArgsMgr()
+    private static List<EventArgs> ListEventArgs = new List<EventArgs>();
+
+    static XEventArgsMgr()
     {
         ListEventArgs.Add(new MoveArgs());
         ListEventArgs.Add(new IdleEventArgs());
@@ -14,7 +15,7 @@ public class XEventArgsMgr  : XSingleton<XEventArgsMgr>
         ListEventArgs.Add(new DashEventArgs());
     }
 
-    public T GetEventArgs<T>()
+    public static T GetEventArgs<T>()
     {
         for (int i = 0; i < ListEventArgs.Count; i++)
         {

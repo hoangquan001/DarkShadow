@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using DarkShadow;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Events;
-public class XIdleComponent : XComponent 
+public class XIdleComponent : XComponent, IState
 {
+    Vector3 dir = Vector3.zero;
 
     public override void RegisterEvents()
     {
@@ -14,6 +15,21 @@ public class XIdleComponent : XComponent
 
     private void OnEventAction(EventArgs e)
     {
-          _entity.ApplyMove((e as IdleEventArgs).dir);
+        _entity.stateMachine.TransitionTo(StateType.Idle);
+        dir = (e as IdleEventArgs).dir;
+
+    }
+
+    public void OnEnter()
+    {
+    }
+
+    public void OnExit()
+    {
+    }
+
+    public void UpdateAction()
+    {
+        _entity.ApplyMove(dir);
     }
 }

@@ -24,6 +24,9 @@ public class XSkillCore
         if(SkillTimer > 0)
         {
             SkillTimer -= Time.deltaTime;
+        }else
+        {
+            Finish();
         }
         
     }
@@ -32,6 +35,7 @@ public class XSkillCore
     {
         isCastingSkill = true;
         CDTimer = CountDown;
+        SkillTimer = SkillTime;
     }
     
     public void Finish()
