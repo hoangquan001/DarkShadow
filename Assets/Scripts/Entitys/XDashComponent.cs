@@ -4,12 +4,18 @@ using DarkShadow;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
-public class XDashComponent : XComponent,IState
+public class XDashComponent : XComponent, IState
 {
 
     private float startDash;
-    private float speed = 50f;
+    private float speed = 100f;
     private float range;
+
+    private Vector2 startPos;
+    private Vector2 curPos;
+
+
+    public StateType stateId => StateType.Dash;
 
     public override void RegisterEvents()
     {
@@ -22,31 +28,30 @@ public class XDashComponent : XComponent,IState
         DashEventArgs args = e as DashEventArgs;
         _entity.stateMachine.TransitionTo(StateType.Dash);
     }
-    private void OnEnter()
+    public void OnEnter()
     {
-        startDash = Time.time;
-        
+        startPos = _entity.transform.position;
+        curPos = startPos;
+        _entity.animator.SetInteger("SkillState", 1);
+
     }
 
-    private void End()
+    public void UpdateAction()
     {
-    }
-
-    public void ActionUpdate()
-    {
-
-    }
-    public override void FixedUpdate()
-    {
-
-        base.FixedUpdate();
-
-        if (Time.time - startDash < 0.1f)
+        if ((curPos - startPos).magnitude > 5)
         {
-            _entity.Dash(_entity.face == Face.Right ? Vector2.right : Vector2.left, speed);
+            _entity.Idle();
         }
-        
+        else
+        {
+            curPos += new Vector2((int)_entity.face, 0) * speed * Time.deltaTime;
+            _entity.Move(new Vector2((int)_entity.face, 0), speed);
+        }
     }
 
+    public void OnExit()
+    {
+        _entity.animator.SetInteger("SkillState", 0);
 
+    }
 }

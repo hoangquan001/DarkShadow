@@ -25,7 +25,7 @@ public class PlayerVFX : MonoBehaviour
     {
         TrailVFX.SetActive(false);
     }
-    public void  playExplosion(Vector2 position)
+    public void playExplosion(Vector2 position)
     {
         Instantiate(ExplosionVFX, position, Quaternion.identity);
     }

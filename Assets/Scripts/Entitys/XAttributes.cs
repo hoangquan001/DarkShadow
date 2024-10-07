@@ -1,16 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class XAttributes 
+public enum AttributeType
 {
-    public int speed;
-    public int HP;
-    public int MP;
-    
+    None = -1,
+    SpeedRun,
+    SpeedDash,
+    SpeedJump,
+    SpeedFall,
+    curHP,
+    MaxHP,
+    curMP,
+    MaxMP,
+    Damage,
+    Defense
+};
+public class XAttributes
+{
+    Dictionary<AttributeType, float> attributes = new Dictionary<AttributeType, float>();
+
     public XAttributes()
     {
-        this.speed = 0;
-        this.HP = 0;
-        this.MP = 0;
+
     }
+
+    public float GetAttributeValue(AttributeType type)
+    {
+        if (!attributes.ContainsKey(type))
+        {
+            return 0;
+        }
+        return attributes[type];
+    }
+
+    public void SetAttributeValue(AttributeType type, float value)
+    {
+        attributes[type] = value;
+    }
+
+    public void AddAttributeValue(AttributeType type, float value)
+    {
+        if (!attributes.ContainsKey(type))
+        {
+            return;
+        }
+        attributes[type] += value;
+    }
+
 }

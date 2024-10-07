@@ -13,13 +13,14 @@ public static class XEventArgsMgr
         ListEventArgs.Add(new IdleEventArgs());
         ListEventArgs.Add(new CastSkillArgs());
         ListEventArgs.Add(new DashEventArgs());
+        ListEventArgs.Add(new JumpArgs());
     }
 
     public static T GetEventArgs<T>()
     {
         for (int i = 0; i < ListEventArgs.Count; i++)
         {
-            if(ListEventArgs[i] is T)
+            if (ListEventArgs[i] is T)
             {
                 return (T)(object)ListEventArgs[i];
             }

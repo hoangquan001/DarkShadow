@@ -5,21 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public enum StateType 
-    {
-        Idle,
-        Jump,
-        Dash,
-        Move,
+public enum StateType
+{
+    Idle,
+    Jump,
+    Dash,
+    Move,
 
-        FireMagic
-    }
-    public interface IState
-    {
-        void OnEnter() { }
-        void UpdateAction() { }
-        void OnExit() { }
-    }
+    FireMagic
+}
+public interface IState
+{
+    StateType stateId { get; }
+    void OnEnter();
+    void UpdateAction();
+    void OnExit();
+}
 
 
 

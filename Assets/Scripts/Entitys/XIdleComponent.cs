@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using DarkShadow;
-using Unity.Mathematics;
 using UnityEngine;
 public class XIdleComponent : XComponent, IState
 {
-    Vector3 dir = Vector3.zero;
+    public StateType stateId => StateType.Idle;
 
     public override void RegisterEvents()
     {
@@ -16,12 +15,13 @@ public class XIdleComponent : XComponent, IState
     private void OnEventAction(EventArgs e)
     {
         _entity.stateMachine.TransitionTo(StateType.Idle);
-        dir = (e as IdleEventArgs).dir;
 
     }
 
     public void OnEnter()
     {
+        _entity.Stop();
+        _entity.animator.SetFloat("SpeedRun", 0);
     }
 
     public void OnExit()
@@ -30,6 +30,6 @@ public class XIdleComponent : XComponent, IState
 
     public void UpdateAction()
     {
-        _entity.ApplyMove(dir);
+        // _entity.ApplyMove(dir);
     }
 }

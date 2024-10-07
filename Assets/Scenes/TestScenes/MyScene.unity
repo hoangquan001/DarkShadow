@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10344,7 +10343,7 @@ BoxCollider2D:
   m_EdgeRadius: 0.01
 --- !u!95 &5130439494218943830
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10361,7 +10360,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &5130439494218943832
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10486,6 +10486,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63652e4b9188f7543a57b593b064efc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb2d: {fileID: 0}
+  _collider: {fileID: 0}
+  animator: {fileID: 0}
+  face: 0
   MoveDir: {x: 0, y: 0}
 --- !u!198 &5130439494605993128
 ParticleSystem:
@@ -15211,7 +15215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5130439494605993134
 Transform:
   m_ObjectHideFlags: 0
