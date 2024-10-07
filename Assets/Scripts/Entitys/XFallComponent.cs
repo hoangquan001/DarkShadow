@@ -4,9 +4,9 @@ using System.Threading;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
-public class XJumpComponent : XComponent, IState
+public class XFallComponent : XComponent, IState
 {
-    public StateType stateId => StateType.Jump;
+    public StateType stateId => StateType.Fall;
     private float timer = 0.0f;
     public override void Init()
     {
@@ -15,35 +15,34 @@ public class XJumpComponent : XComponent, IState
     public override void RegisterEvents()
     {
         base.RegisterEvents();
-        // Register<CastSkillArgs>( OnCastSkill);
-        Register<JumpArgs>(OnJump);
+        Register<FallEventArgs>(OnFall);
     }
 
-    private void OnCastSkill(EventArgs e)
+    private void OnFall(EventArgs e)
     {
+        _entity.stateMachine.TransitionTo(StateType.Fall);
 
-    }
-    private void OnJump(EventArgs e)
-    {
-        _entity.stateMachine.TransitionTo(StateType.Jump);
     }
 
     public void OnEnter()
     {
+        _entity.animator.SetBool("Fall", true);
 
-        _entity.AddForce(force: new Vector2(0, 1000));
-        _entity.animator.SetBool("Jump", true);
-
-        timer = 0.0f;
     }
     public void UpdateAction()
     {
         timer += Time.deltaTime;
         _entity.Move(new Vector2((int)_entity.movement.x, 1), 10);
+        if (_entity.rb2d.velocity.y <= 0 && _entity.IsGrounded() && timer > 0.5f)
+        {
+            _entity.Idle();
+        }
+
     }
     public void OnExit()
     {
-        _entity.animator.SetBool("Jump", false);
+        _entity.animator.SetBool("Fall", false);
+
     }
 
 }

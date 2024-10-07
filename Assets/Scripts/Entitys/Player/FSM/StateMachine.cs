@@ -8,6 +8,7 @@ public class StateMachine
     XEntity entity;
     public Dictionary<StateType, IState> DirStates = new Dictionary<StateType, IState>();
     IState curState;
+    IState defaultState;
 
     public StateType CurrentState
     {
@@ -33,9 +34,10 @@ public class StateMachine
     {
         DirStates[stateId] = state;
     }
-    public void setCurrentState(StateType stateId)
+    public void SetDefaultState(StateType stateId)
     {
-        curState = DirStates[stateId];
+        defaultState = DirStates[stateId];
+        curState = defaultState;
     }
 
     public void TransitionTo(StateType nextStateId)

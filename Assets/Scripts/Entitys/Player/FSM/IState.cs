@@ -12,6 +12,8 @@ public enum StateType
     Dash,
     Move,
 
+    Fall,
+
     FireMagic
 }
 public interface IState

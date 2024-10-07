@@ -13,6 +13,8 @@ public class XEntity : XObject
     public Animator animator;
     private XSkillMgr _skillMgr;
     public Face face = Face.Right;
+
+    public Vector2 movement = Vector2.zero;
     public XSkillMgr SkillMgr
     {
         get
@@ -29,7 +31,6 @@ public class XEntity : XObject
             return _attributes;
         }
     }
-    public Vector2 MoveDir = Vector2.zero;
     public XEntity()
     {
         stateMachine = new StateMachine(this);
@@ -60,7 +61,7 @@ public class XEntity : XObject
 
     public void ApplyMove(Vector2 dir)
     {
-        MoveDir = dir;
+        movement = dir;
     }
 
     public void Rotation(int direct)
@@ -77,14 +78,17 @@ public class XEntity : XObject
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
-        // Move(MoveDir, 10);
     }
     public void Move(Vector2 dir, float speed)
     {
         float xVelocity = rb2d.velocity.x;
         xVelocity = dir.x * speed;
-        rb2d.velocity = new Vector2(xVelocity, rb2d.velocity.y);
+        rb2d.velocity = new Vector2(xVelocity, rb2d.velocity.y * dir.y);
+        if (dir.x != 0)
+        {
+            Rotation(direct: dir.x > 0 ? 1 : -1);
+        }
+
     }
     public void Stop()
     {

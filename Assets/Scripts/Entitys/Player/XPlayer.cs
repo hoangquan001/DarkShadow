@@ -33,7 +33,7 @@ public class XPlayer : XEntity
         stateMachine.addState(StateType.Move, xMoveComponent as IState);
         stateMachine.addState(StateType.Dash, xDashComponent as IState);
         stateMachine.addState(StateType.Jump, xJumpComponent as IState);
-        stateMachine.setCurrentState(StateType.Idle);
+        stateMachine.SetDefaultState(StateType.Idle);
         // stateMachine.addState(StateType.Jump, xSkillComponent as IState);
     }
 
@@ -50,9 +50,10 @@ public class XPlayer : XEntity
     }
     void checkJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.UpArrow) && IsGrounded())
         {
             JumpArgs jumpArgs = XEventArgsMgr.GetEventArgs<JumpArgs>();
+            jumpArgs.IsJumping = true;
             @FireEvent(jumpArgs);
         }
 
@@ -61,33 +62,39 @@ public class XPlayer : XEntity
     public override void Update()
     {
         base.Update();
-        Vector2 dir = Vector2.zero;
-        dir.x = Input.GetAxisRaw("Horizontal");
-        dir.y = Input.GetAxisRaw("Vertical");
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
+        // if (!IsGrounded() && rb2d.velocity.y < 0)
+        // {
+        //     JumpArgs jumpArgs = XEventArgsMgr.GetEventArgs<JumpArgs>();
+        //     jumpArgs.IsJumping = false;
+        //     @FireEvent(jumpArgs);
+        //     return;
+        // }
         switch (stateMachine.CurrentState)
         {
             case StateType.Idle:
-                if (dir.x != 0)
+                if (movement.x != 0)
                 {
                     MoveArgs moveArgs = XEventArgsMgr.GetEventArgs<MoveArgs>();
-                    moveArgs.direction = dir;
+                    moveArgs.direction = movement;
                     @FireEvent(moveArgs);
                 }
                 CheckDash();
                 checkJump();
                 break;
             case StateType.Move:
-                if (dir.x == 0)
+                if (movement.x == 0)
                 {
                     IdleEventArgs IdleArgs = XEventArgsMgr.GetEventArgs<IdleEventArgs>();
-                    IdleArgs.dir = dir;
+                    IdleArgs.dir = movement;
                     @FireEvent(IdleArgs);
                 }
-                else if (dir.x != (int)face)
+                else if (movement.x != (int)face)
                 {
                     MoveArgs moveArgs = XEventArgsMgr.GetEventArgs<MoveArgs>();
-                    moveArgs.direction = dir;
+                    moveArgs.direction = movement;
                     @FireEvent(moveArgs);
                 }
                 CheckDash();

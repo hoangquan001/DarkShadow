@@ -14,8 +14,13 @@ public class XDashComponent : XComponent, IState
     private Vector2 startPos;
     private Vector2 curPos;
 
-
+    private GameObject vfx;
+    private float disableTimer;
     public StateType stateId => StateType.Dash;
+    public override void Init()
+    {
+        vfx = _entity.transform.Find("VFX/Trail").gameObject;
+    }
 
     public override void RegisterEvents()
     {
@@ -30,17 +35,28 @@ public class XDashComponent : XComponent, IState
     }
     public void OnEnter()
     {
+        vfx.SetActive(true);
         startPos = _entity.transform.position;
         curPos = startPos;
         _entity.animator.SetInteger("SkillState", 1);
-
+        disableTimer = 0.25f;
     }
 
     public void UpdateAction()
     {
         if ((curPos - startPos).magnitude > 5)
         {
-            _entity.Idle();
+            _entity.animator.SetInteger("SkillState", 0);
+            _entity.Stop();
+            if (disableTimer > 0f)
+            {
+
+                disableTimer -= Time.deltaTime;
+            }
+            else
+            {
+                _entity.Idle();
+            }
         }
         else
         {
@@ -48,10 +64,13 @@ public class XDashComponent : XComponent, IState
             _entity.Move(new Vector2((int)_entity.face, 0), speed);
         }
     }
+    public override void Update()
+    {
 
+    }
     public void OnExit()
     {
-        _entity.animator.SetInteger("SkillState", 0);
+        vfx.SetActive(false);
 
     }
 }
