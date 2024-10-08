@@ -72,7 +72,7 @@ public class XEntity : XObject
     public void Dash(Vector2 dir, float DashSpeed)
     {
         rb2d.velocity = Vector3.zero;
-        rb2d.MovePosition(transform.position + new Vector3(DashSpeed * dir.x, 0) * Time.fixedDeltaTime);
+        rb2d.MovePosition( transform.position + new Vector3(DashSpeed * dir.x *Time.deltaTime, 0));
     }
 
     public override void FixedUpdate()

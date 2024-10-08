@@ -39,7 +39,7 @@ public class XDashComponent : XComponent, IState
         startPos = _entity.transform.position;
         curPos = startPos;
         _entity.animator.SetInteger("SkillState", 1);
-        disableTimer = 0.25f;
+        disableTimer = 0.5f;
     }
 
     public void UpdateAction()
@@ -60,8 +60,9 @@ public class XDashComponent : XComponent, IState
         }
         else
         {
-            curPos += new Vector2((int)_entity.face, 0) * speed * Time.deltaTime;
-            _entity.Move(new Vector2((int)_entity.face, 0), speed);
+            float x = (int)_entity.face * speed * Time.deltaTime;
+            curPos += new Vector2(x, 0);
+            _entity.Dash(new Vector2((int)_entity.face, 0), speed);
         }
     }
     public override void Update()
@@ -71,6 +72,7 @@ public class XDashComponent : XComponent, IState
     public void OnExit()
     {
         vfx.SetActive(false);
+        _entity.animator.SetInteger("SkillState", 0);
 
     }
 }

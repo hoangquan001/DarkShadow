@@ -14,6 +14,7 @@ public static class XEventArgsMgr
         ListEventArgs.Add(new CastSkillArgs());
         ListEventArgs.Add(new DashEventArgs());
         ListEventArgs.Add(new JumpArgs());
+        ListEventArgs.Add(new FallEventArgs());
     }
 
     public static T GetEventArgs<T>()

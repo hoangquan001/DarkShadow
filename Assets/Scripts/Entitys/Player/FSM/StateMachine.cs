@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using DarkShadow;
+using UnityEngine;
 
 
 public class StateMachine
@@ -9,12 +10,20 @@ public class StateMachine
     public Dictionary<StateType, IState> DirStates = new Dictionary<StateType, IState>();
     IState curState;
     IState defaultState;
+    public float startTime = 0;
 
-    public StateType CurrentState
+    public StateType CurStateType
     {
         get
         {
             return curState.stateId;
+        }
+    }
+    public IState CurState
+    {
+        get
+        {
+            return curState;
         }
     }
 
@@ -45,6 +54,7 @@ public class StateMachine
         curState.OnExit();
         curState = DirStates[nextStateId];
         curState.OnEnter();
+        startTime = Time.time;
     }
 
     public void Update()

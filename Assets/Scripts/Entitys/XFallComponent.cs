@@ -8,6 +8,8 @@ public class XFallComponent : XComponent, IState
 {
     public StateType stateId => StateType.Fall;
     private float timer = 0.0f;
+    private float preGravity = 0;
+
     public override void Init()
     {
 
@@ -26,6 +28,8 @@ public class XFallComponent : XComponent, IState
 
     public void OnEnter()
     {
+        preGravity = _entity.rb2d.gravityScale;
+        _entity.rb2d.gravityScale = 8;
         _entity.animator.SetBool("Fall", true);
 
     }
@@ -33,14 +37,11 @@ public class XFallComponent : XComponent, IState
     {
         timer += Time.deltaTime;
         _entity.Move(new Vector2((int)_entity.movement.x, 1), 10);
-        if (_entity.rb2d.velocity.y <= 0 && _entity.IsGrounded() && timer > 0.5f)
-        {
-            _entity.Idle();
-        }
 
     }
     public void OnExit()
     {
+        _entity.rb2d.gravityScale = preGravity;
         _entity.animator.SetBool("Fall", false);
 
     }

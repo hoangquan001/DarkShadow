@@ -8,6 +8,7 @@ public class XJumpComponent : XComponent, IState
 {
     public StateType stateId => StateType.Jump;
     private float timer = 0.0f;
+    private float preGravity = 0 ;
     public override void Init()
     {
 
@@ -30,7 +31,8 @@ public class XJumpComponent : XComponent, IState
 
     public void OnEnter()
     {
-
+        preGravity = _entity.rb2d.gravityScale;
+        _entity.rb2d.gravityScale = 4;
         _entity.AddForce(force: new Vector2(0, 1000));
         _entity.animator.SetBool("Jump", true);
 
@@ -43,6 +45,7 @@ public class XJumpComponent : XComponent, IState
     }
     public void OnExit()
     {
+        _entity.rb2d.gravityScale = preGravity;
         _entity.animator.SetBool("Jump", false);
     }
 
