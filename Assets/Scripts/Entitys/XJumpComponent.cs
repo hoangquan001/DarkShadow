@@ -8,7 +8,7 @@ public class XJumpComponent : XComponent, IState
 {
     public StateType stateId => StateType.Jump;
     private float timer = 0.0f;
-    private float preGravity = 0 ;
+    private float preGravity = 0;
     public override void Init()
     {
 
@@ -17,7 +17,7 @@ public class XJumpComponent : XComponent, IState
     {
         base.RegisterEvents();
         // Register<CastSkillArgs>( OnCastSkill);
-        Register<JumpArgs>(OnJump);
+        Register<JumpEventArgs>(OnJump);
     }
 
     private void OnCastSkill(EventArgs e)

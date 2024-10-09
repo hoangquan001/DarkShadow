@@ -8,20 +8,36 @@ public class XSkillComponent : XComponent, IState
     XSkillCore SkillCore = null;
 
     public StateType stateId => StateType.Skill;
+    public override void Init()
+    {
+        XSkillCore xSkillCore = new XSkillCoreBuilder()
+        .SetAnimationClip(Resources.Load<AnimationClip>("Animation/Player/Attack"))
+        .SetCountDown(2f)
+        .SetID(7)
+        .Build();
+        _entity.SkillMgr.AddSkill(xSkillCore);
+        xSkillCore = new XSkillCoreBuilder()
+        .SetAnimationClip(Resources.Load<AnimationClip>("Animation/Player/MagicFire"))
+        .SetCountDown(2f)
+        .SetID(8)
+        .Build();
+        _entity.SkillMgr.AddSkill(xSkillCore);
+    }
+
 
     public override void RegisterEvents()
     {
         base.RegisterEvents();
-        Register<SkillEventArgs>( OnCastSkill);
+        Register<SkillEventArgs>(OnCastSkill);
     }
 
     private void OnCastSkill(EventArgs e)
     {
         SkillEventArgs args = e as SkillEventArgs;
-        SkillCore =  _entity.SkillMgr.GetSkill((uint)args.SkillType);
+        SkillCore = _entity.SkillMgr.GetSkill((uint)args.SkillType);
         // if(_entity.SkillMgr.CanCastSkill((uint)args.SkillType))
         // {
-         
+
         // }
         // _entity.OverrideAnimationClip(SkillCore.stateName, SkillCore.clip);
         _entity.stateMachine.TransitionTo(StateType.Skill);
@@ -38,7 +54,7 @@ public class XSkillComponent : XComponent, IState
 
     public void UpdateAction()
     {
-        if(!SkillCore .IsCastingSkill)
+        if (!SkillCore.IsCastingSkill)
         {
             _entity.Idle();
         }

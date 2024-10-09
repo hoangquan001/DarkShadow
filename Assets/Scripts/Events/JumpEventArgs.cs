@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-public class JumpArgs : MoveEventArgs
+public class JumpEventArgs : MoveEventArgs
 {
     public bool IsJumping = true;
 }

@@ -58,7 +58,11 @@ public class XPlayer : XEntity
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            return SkillMgr.CastSkill(1);
+            return SkillMgr.CastSkill(7);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            return SkillMgr.CastSkill(8);
         }
         return false;
     }
@@ -66,7 +70,7 @@ public class XPlayer : XEntity
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && IsGrounded())
         {
-            JumpArgs jumpArgs = XEventArgsMgr.GetEventArgs<JumpArgs>();
+            JumpEventArgs jumpArgs = XEventArgsMgr.GetEventArgs<JumpEventArgs>();
             jumpArgs.IsJumping = true;
             @FireEvent(jumpArgs);
             return true;
@@ -136,7 +140,7 @@ public class XPlayer : XEntity
             case StateType.Jump:
                 CheckSkill();
                 CheckFall();
-                if (IsGrounded() && Time.time -  stateMachine.startTime > 0.5f)
+                if (IsGrounded() && Time.time - stateMachine.startTime > 0.5f)
                 {
                     IdleEventArgs IdleArgs = XEventArgsMgr.GetEventArgs<IdleEventArgs>();
                     @FireEvent(IdleArgs);
