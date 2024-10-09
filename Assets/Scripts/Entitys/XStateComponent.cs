@@ -10,13 +10,13 @@ public class XStateComponent : XComponent, IState
     public override void RegisterEvents()
     {
         base.RegisterEvents();
-        Register<IdleEventArgs>(OnEventAction);
+        // Register<IdleEventArgs>(OnEventAction);
     }
 
     private void OnEventAction(EventArgs e)
     {
-        _entity.stateMachine.TransitionTo(StateType.Idle);
-        _entity.ApplyMove(Vector3.zero);
+        // _entity.stateMachine.TransitionTo(StateType.Idle);
+        // _entity.ApplyMove(Vector3.zero);
 
     }
 
@@ -31,5 +31,9 @@ public class XStateComponent : XComponent, IState
     public void UpdateAction()
     {
         // _entity.ApplyMove(dir);
+    }
+
+    public void FixedUpdateAction()
+    {
     }
 }

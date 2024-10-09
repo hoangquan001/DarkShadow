@@ -32,4 +32,8 @@ public class XIdleComponent : XComponent, IState
     {
         // _entity.ApplyMove(dir);
     }
+
+    public void FixedUpdateAction()
+    {
+    }
 }

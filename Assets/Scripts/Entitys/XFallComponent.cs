@@ -35,8 +35,7 @@ public class XFallComponent : XComponent, IState
     }
     public void UpdateAction()
     {
-        timer += Time.deltaTime;
-        _entity.Move(new Vector2((int)_entity.movement.x, 1), 10);
+
 
     }
     public void OnExit()
@@ -46,4 +45,8 @@ public class XFallComponent : XComponent, IState
 
     }
 
+    public void FixedUpdateAction()
+    {
+        _entity.Move(new Vector2((int)_entity.movement.x, 1), 10);
+    }
 }

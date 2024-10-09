@@ -11,20 +11,25 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class XPlayer : XEntity
 {
-    // public GameObject DustVFX;
-    // public GameObject ExplosionVFX;
-    // public GameObject TrailVFX;
 
     public override void OnCreate()
     {
         entityType = EntityType.Player;
-        // moveArgs  = GetEventArgs<MoveArgs>();
-
+        // MoveEventArgs  = GetEventArgs<MoveEventArgs>();
+        Attributes.SetAttributeValue(AttributeType.Damage, 10);
+        Attributes.SetAttributeValue(AttributeType.Defense, 10);
+        Attributes.SetAttributeValue(AttributeType.MaxHP, 100);
+        Attributes.SetAttributeValue(AttributeType.MaxMP, 100);
+        Attributes.SetAttributeValue(AttributeType.DashRange, 5);
+        Attributes.SetAttributeValue(AttributeType.SpeedDash, 100);
+        Attributes.SetAttributeValue(AttributeType.SpeedJump, 10);
+        Attributes.SetAttributeValue(AttributeType.SpeedFall, 10);
+        Attributes.SetAttributeValue(AttributeType.SpeedRun, 10);
     }
     public override void InitComponent()
     {
         // AddXComponent(new PlayerControlComponent());
-        XComponent xSkillComponent = AddXComponent(XComponent.CreateComponent<XSkillComponent>());
+        var xSkillComponent = AddXComponent(XComponent.CreateComponent<XSkillComponent>());
         var xMoveComponent = AddXComponent(XComponent.CreateComponent<XMoveComponent>());
         var xIdleComponent = AddXComponent(XComponent.CreateComponent<XIdleComponent>());
         var xDashComponent = AddXComponent(XComponent.CreateComponent<XDashComponent>());
@@ -35,21 +40,25 @@ public class XPlayer : XEntity
         stateMachine.addState(StateType.Dash, xDashComponent as IState);
         stateMachine.addState(StateType.Jump, xJumpComponent as IState);
         stateMachine.addState(StateType.Fall, xFallComponent as IState);
+        stateMachine.addState(StateType.Skill, xSkillComponent as IState);
         stateMachine.SetDefaultState(StateType.Idle);
         // stateMachine.addState(StateType.Jump, xSkillComponent as IState);
     }
 
-    bool CheckDash()
+    bool CheckSkill()
     {
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-
             DashEventArgs @event = XEventArgsMgr.GetEventArgs<DashEventArgs>();
-            @event.DashRange = 10;
-            @event.DashSpeed = 50;
+            @event.DashRange = Attributes.GetAttributeValue(AttributeType.DashRange);
+            @event.DashSpeed = Attributes.GetAttributeValue(AttributeType.SpeedDash);
             @FireEvent(@event);
             return true;
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            return SkillMgr.CastSkill(1);
         }
         return false;
     }
@@ -64,7 +73,6 @@ public class XPlayer : XEntity
 
         }
         return false;
-
     }
     bool CheckFall()
     {
@@ -97,11 +105,11 @@ public class XPlayer : XEntity
             case StateType.Idle:
                 if (movement.x != 0)
                 {
-                    MoveArgs moveArgs = XEventArgsMgr.GetEventArgs<MoveArgs>();
-                    moveArgs.direction = movement;
-                    @FireEvent(moveArgs);
+                    MoveEventArgs MoveEventArgs = XEventArgsMgr.GetEventArgs<MoveEventArgs>();
+                    MoveEventArgs.direction = movement;
+                    @FireEvent(MoveEventArgs);
                 }
-                CheckDash();
+                CheckSkill();
                 CheckJump();
                 CheckFall();
                 break;
@@ -114,11 +122,11 @@ public class XPlayer : XEntity
                 }
                 else if (movement.x != (int)face)
                 {
-                    MoveArgs moveArgs = XEventArgsMgr.GetEventArgs<MoveArgs>();
-                    moveArgs.direction = movement;
-                    @FireEvent(moveArgs);
+                    MoveEventArgs MoveEventArgs = XEventArgsMgr.GetEventArgs<MoveEventArgs>();
+                    MoveEventArgs.direction = movement;
+                    @FireEvent(MoveEventArgs);
                 }
-                CheckDash();
+                CheckSkill();
                 CheckJump();
                 CheckFall();
                 break;
@@ -126,7 +134,7 @@ public class XPlayer : XEntity
                 // CheckFall();
                 break;
             case StateType.Jump:
-                CheckDash();
+                CheckSkill();
                 CheckFall();
                 if (IsGrounded() && Time.time -  stateMachine.startTime > 0.5f)
                 {
@@ -135,13 +143,15 @@ public class XPlayer : XEntity
                 }
                 break;
             case StateType.Fall:
-                CheckDash();
+                CheckSkill();
                 if (IsGrounded())
                 {
                     IdleEventArgs IdleArgs = XEventArgsMgr.GetEventArgs<IdleEventArgs>();
                     @FireEvent(IdleArgs);
                 }
 
+                break;
+            case StateType.Skill:
                 break;
             default:
                 break;

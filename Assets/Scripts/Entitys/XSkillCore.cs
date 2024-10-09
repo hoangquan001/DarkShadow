@@ -4,54 +4,112 @@ using UnityEngine;
 public delegate bool EndSkillCondition();
 public class XSkillCore
 {
-    public uint ID; 
-    bool isCastingSkill;
-    float CountDown = 0;
-    float CDTimer = 0;
+    public bool IsCastingSkill
+    {
+        get
+        {
+            return SkillTimer > 0;
+        }
 
-    float SkillTime = 1;
+    }
+
+    public uint ID;
+    public float CountDown = 5;
+    float CDTimer = 0;
+    float SkillTime 
+    {
+        get
+        {
+            return _skillClip.length;
+        }
+    }
     float SkillTimer = 0;
 
-    public bool IsCD => CDTimer > 0;
-    XSkillType SkillType;
-
-    public void UpdateCD()
+    public bool IsCD
     {
-        if(CDTimer > 0)
+        get
+        {
+            return CDTimer > 0;
+        }
+    }
+    XSkillType SkillType;
+    private AnimationClip _skillClip;
+    public AnimationClip SkillClip
+    {
+        get
+        {
+            return _skillClip;
+        }
+        set
+        {
+            _skillClip = value;
+        }
+    }
+    public XSkillCore()
+    {
+        SkillClip = Resources.Load<AnimationClip>("Animation/Player/MagicFire");
+
+    }
+
+    public void Update()
+    {
+        if (CDTimer > 0)
         {
             CDTimer -= Time.deltaTime;
         }
-        if(SkillTimer > 0)
+        if (SkillTimer > 0)
         {
             SkillTimer -= Time.deltaTime;
-        }else
-        {
-            Finish();
         }
-        
     }
 
     public void Begin()
     {
-        isCastingSkill = true;
         CDTimer = CountDown;
         SkillTimer = SkillTime;
     }
-    
+    public void Cancel()
+    {
+        CDTimer = 0;
+        SkillTimer = 0;
+    }
+
     public void Finish()
     {
-        isCastingSkill = false;
     }
 
     public void Fire()
     {
         Begin();
     }
-    public bool IsCastingSkill()
+
+    
+    // public EndSkillCondition()
+}
+
+public class XSkillCoreBuilder
+{
+    XSkillCore xSkillCore = new XSkillCore();
+    public XSkillCoreBuilder() { }
+    public XSkillCoreBuilder SetAnimationClip(AnimationClip clip)
     {
-        return isCastingSkill;
-        
+        xSkillCore.SkillClip = clip;
+        return this;
+    }
+    public XSkillCoreBuilder SetCountDown(float countDown)
+    {
+        xSkillCore.CountDown = countDown;
+        return this;
     }
 
-    // public EndSkillCondition()
+    public XSkillCoreBuilder SetID(uint id)
+    {
+        xSkillCore.ID = id;
+        return this;
+    }
+
+    public XSkillCore Build()
+    {
+        return xSkillCore;
+    }
 }

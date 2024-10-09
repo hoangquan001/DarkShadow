@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 public enum Face { Right = 1, Left = -1 }
 public enum EntityType { None = 0, Player = 1, NPC = 2 };
 public class XEntity : XObject
 {
     public StateMachine stateMachine;
-
     public Rigidbody2D rb2d;
     public Collider2D _collider;
     public Animator animator;
-    private XSkillMgr _skillMgr;
+    protected XSkillMgr _skillMgr;
     public Face face = Face.Right;
 
     public Vector2 movement = Vector2.zero;
@@ -22,6 +22,7 @@ public class XEntity : XObject
             return _skillMgr;
         }
     }
+    public Vector3 Possition => transform.position;
     public EntityType entityType = EntityType.None;
     private XAttributes _attributes = new XAttributes();
     public XAttributes Attributes
@@ -38,14 +39,15 @@ public class XEntity : XObject
     }
     public override void Awake()
     {
-        base.Awake();
         rb2d = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+        _skillMgr = new XSkillMgr(this);
+        base.Awake();
     }
     public override void OnCreate()
     {
-        _skillMgr = new XSkillMgr();
+        
     }
     public float groundDistance = 0.1f;
 
@@ -55,8 +57,7 @@ public class XEntity : XObject
         base.Update();
         animator.SetBool("Ground", IsGrounded());
         stateMachine.Update();
-
-        // _skillMgr.Update();
+        _skillMgr.Update();
     }
 
     public void ApplyMove(Vector2 dir)
@@ -69,14 +70,11 @@ public class XEntity : XObject
         transform.rotation = Quaternion.Euler(0, direct > 0 ? 0 : 180, 0);
         face = direct > 0 ? Face.Right : Face.Left;
     }
-    public void Dash(Vector2 dir, float DashSpeed)
-    {
-        rb2d.velocity = Vector3.zero;
-        rb2d.MovePosition( transform.position + new Vector3(DashSpeed * dir.x *Time.deltaTime, 0));
-    }
+
 
     public override void FixedUpdate()
     {
+        stateMachine.FixedUpdate();
         base.FixedUpdate();
     }
     public void Move(Vector2 dir, float speed)
@@ -115,5 +113,18 @@ public class XEntity : XObject
         IdleEventArgs IdleArgs = XEventArgsMgr.GetEventArgs<IdleEventArgs>();
         @FireEvent(IdleArgs);
     }
+    public void OverrideAnimationClip(string stateName, AnimationClip clip)
+    {
+        AnimatorOverrideController overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        if (clip != null)
+        {
+            overrideController[stateName] = clip;
+            animator.runtimeAnimatorController = overrideController;
+        }
+        else
+        {
+            Debug.LogError("Original animation or new clip not found!");
+        }
 
+    }
 }

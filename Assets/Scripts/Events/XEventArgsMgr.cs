@@ -5,27 +5,20 @@ using UnityEngine;
 
 public static class XEventArgsMgr
 {
-    private static List<EventArgs> ListEventArgs = new List<EventArgs>();
+    private static Dictionary<Type,EventArgs> ListEventArgs = new Dictionary<Type, EventArgs>();
 
     static XEventArgsMgr()
     {
-        ListEventArgs.Add(new MoveArgs());
-        ListEventArgs.Add(new IdleEventArgs());
-        ListEventArgs.Add(new CastSkillArgs());
-        ListEventArgs.Add(new DashEventArgs());
-        ListEventArgs.Add(new JumpArgs());
-        ListEventArgs.Add(new FallEventArgs());
     }
 
     public static T GetEventArgs<T>()
     {
-        for (int i = 0; i < ListEventArgs.Count; i++)
+        if(ListEventArgs.ContainsKey(typeof(T)))
         {
-            if (ListEventArgs[i] is T)
-            {
-                return (T)(object)ListEventArgs[i];
-            }
+            return (T)(object)ListEventArgs[typeof(T)];
         }
-        return default(T);
+        var t = Activator.CreateInstance<T>();
+        ListEventArgs.Add(typeof(T), t as EventArgs);
+        return t;
     }
 }

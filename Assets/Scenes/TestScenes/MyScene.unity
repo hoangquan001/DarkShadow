@@ -10422,7 +10422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130439494218943839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01913853, y: 2.2916949, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10447,7 +10447,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 6200000, guid: 90cfdd5440a8acf4d92dc8d2a0bf5351, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -10489,8 +10489,10 @@ MonoBehaviour:
   rb2d: {fileID: 0}
   _collider: {fileID: 0}
   animator: {fileID: 0}
-  face: 0
-  MoveDir: {x: 0, y: 0}
+  face: 1
+  movement: {x: 0, y: 0}
+  entityType: 0
+  groundDistance: 0.1
 --- !u!198 &5130439494605993128
 ParticleSystem:
   m_ObjectHideFlags: 0

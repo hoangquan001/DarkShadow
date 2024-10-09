@@ -60,14 +60,14 @@ public class XObject : MonoBehaviour
             xComponents[i].Interface?.FixedUpdate();
         }
     }
-    public XComponent AddXComponent(XComponent xComponent)
+    public IXComponent AddXComponent(IXComponent xComponent)
     {
         xComponents.Add(xComponent);
         xComponent.OnAttach(this);
         xComponent.Init();
         return xComponent;
     }
-    public void RemoveXComponent(XComponent xComponent)
+    public void RemoveXComponent(IXComponent xComponent)
     {
         xComponents.Remove(xComponent);
         xComponent.OnDetach();

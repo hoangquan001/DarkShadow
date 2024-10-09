@@ -8,6 +8,9 @@ public interface IXComponent
     public IXComponent Interface    { get; }
     public  void Update();
     public  void FixedUpdate();
+    public void OnAttach(XObject host);
+    public void OnDetach();
+    public void Init();
 }
 public class XComponent: IXComponent
 {
@@ -56,7 +59,7 @@ public class XComponent: IXComponent
         RegisterEvents();
     }
     public virtual void OnDetach() { }
-    protected void Register<T>(UnityAction<EventArgs> action)
+    protected  void Register<T>(UnityAction<EventArgs> action)
     {
         host.RegisterEvent<T>(action);
     }

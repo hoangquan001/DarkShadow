@@ -8,6 +8,7 @@ public enum AttributeType
     SpeedDash,
     SpeedJump,
     SpeedFall,
+    DashRange,
     curHP,
     MaxHP,
     curMP,

@@ -48,5 +48,7 @@ public class XJumpComponent : XComponent, IState
         _entity.rb2d.gravityScale = preGravity;
         _entity.animator.SetBool("Jump", false);
     }
-
+    public void FixedUpdateAction()
+    {
+    }
 }

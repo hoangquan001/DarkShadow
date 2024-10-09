@@ -61,5 +61,9 @@ public class StateMachine
     {
         curState.UpdateAction();
     }
+    public void FixedUpdate()
+    {
+        curState.FixedUpdateAction();
+    }
 
 }

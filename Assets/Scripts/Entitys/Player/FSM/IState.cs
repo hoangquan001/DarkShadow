@@ -11,16 +11,15 @@ public enum StateType
     Jump,
     Dash,
     Move,
-
     Fall,
-
-    FireMagic
+    Skill
 }
 public interface IState
 {
     StateType stateId { get; }
     void OnEnter();
     void UpdateAction();
+    void FixedUpdateAction();
     void OnExit();
 }
 

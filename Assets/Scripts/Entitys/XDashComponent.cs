@@ -6,13 +6,11 @@ using UnityEngine;
 using UnityEngine.Events;
 public class XDashComponent : XComponent, IState
 {
-
-    private float startDash;
     private float speed = 100f;
-    private float range;
+    private float range = 5f;
 
-    private Vector2 startPos;
-    private Vector2 curPos;
+    private Vector3 startPos;
+    private Vector3 curPos;
 
     private GameObject vfx;
     private float disableTimer;
@@ -20,6 +18,12 @@ public class XDashComponent : XComponent, IState
     public override void Init()
     {
         vfx = _entity.transform.Find("VFX/Trail").gameObject;
+        XSkillCore xSkillCore = new XSkillCoreBuilder()
+        .SetAnimationClip(Resources.Load<AnimationClip>("Animation/Player/Dash"))
+        .SetCountDown(2f)
+        .SetID(0)
+        .Build();
+        _entity.SkillMgr.AddSkill(xSkillCore);
     }
 
     public override void RegisterEvents()
@@ -31,27 +35,44 @@ public class XDashComponent : XComponent, IState
     private void OnEventAction(EventArgs e)
     {
         DashEventArgs args = e as DashEventArgs;
+        range = args.DashRange;
+        speed = args.DashSpeed;
         _entity.stateMachine.TransitionTo(StateType.Dash);
     }
     public void OnEnter()
     {
+        
         vfx.SetActive(true);
         startPos = _entity.transform.position;
         curPos = startPos;
-        _entity.animator.SetInteger("SkillState", 1);
-        disableTimer = 0.5f;
+        disableTimer = 0.1f;
+        var xSkillCore = _entity.SkillMgr.GetSkill(0);
+        _entity.OverrideAnimationClip("Skill", xSkillCore.SkillClip);
+        _entity.animator.SetBool("Attack", true);
+        xSkillCore.Fire();
     }
 
     public void UpdateAction()
     {
-        if ((curPos - startPos).magnitude > 5)
+       
+    }
+
+    public void OnExit()
+    {
+        vfx.SetActive(false);
+        _entity.animator.SetBool("Attack", false);
+    }
+
+    public void FixedUpdateAction()
+    {
+        if ((curPos - startPos).magnitude >= range)
         {
             _entity.animator.SetInteger("SkillState", 0);
             _entity.Stop();
             if (disableTimer > 0f)
             {
 
-                disableTimer -= Time.deltaTime;
+                disableTimer -= Time.fixedDeltaTime;
             }
             else
             {
@@ -60,19 +81,10 @@ public class XDashComponent : XComponent, IState
         }
         else
         {
+            _entity.rb2d.velocity = Vector3.zero;
             float x = (int)_entity.face * speed * Time.deltaTime;
-            curPos += new Vector2(x, 0);
-            _entity.Dash(new Vector2((int)_entity.face, 0), speed);
+            curPos += new Vector3(x, 0);
+            _entity.rb2d.MovePosition(_entity.Possition + new Vector3(x, 0));
         }
-    }
-    public override void Update()
-    {
-
-    }
-    public void OnExit()
-    {
-        vfx.SetActive(false);
-        _entity.animator.SetInteger("SkillState", 0);
-
     }
 }
