@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 public class XStateComponent : XComponent, IState
 {
-    public StateType stateId => StateType.Idle;
+    public virtual StateType stateId => StateType.Idle;
 
     public override void RegisterEvents()
     {
@@ -15,8 +15,7 @@ public class XStateComponent : XComponent, IState
 
     private void OnEventAction(EventArgs e)
     {
-        // _entity.stateMachine.TransitionTo(StateType.Idle);
-        // _entity.ApplyMove(Vector3.zero);
+        _entity.stateMachine.TransitionTo(this);
 
     }
 

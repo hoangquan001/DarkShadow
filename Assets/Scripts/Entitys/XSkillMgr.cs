@@ -59,10 +59,8 @@ public class XSkillMgr
     public bool CastSkill(uint id)
     {
         SkillEventArgs @event = XEventArgsMgr.GetEventArgs<SkillEventArgs>();
-        @event.SkillType  = (int)id;
-        host.@FireEvent(@event);
-        XSkillCore xSkillCore =  GetSkill(id);
-        xSkillCore.Fire();
+        @event.SkillId  = (int)id;
+        host.FireEvent(@event);
         return true;
     }
 

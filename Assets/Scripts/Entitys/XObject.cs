@@ -20,7 +20,7 @@ public class XObject : MonoBehaviour
 
     }
 
-    public bool @FireEvent(EventArgs eventArgs)
+    public bool FireEvent(EventArgs eventArgs)
     {
         string key = eventArgs.GetType().Name;
         // for (int i = 0; i < xComponents.Count; i++)
@@ -85,9 +85,5 @@ public class XObject : MonoBehaviour
         return default;
     }
 
-    public void FireSkill(int skill)
-    {
-
-    }
 
 }

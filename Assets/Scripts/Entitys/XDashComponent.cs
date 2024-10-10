@@ -18,12 +18,6 @@ public class XDashComponent : XComponent, IState
     public override void Init()
     {
         vfx = _entity.transform.Find("VFX/Trail").gameObject;
-        XSkillCore xSkillCore = new XSkillCoreBuilder()
-        .SetAnimationClip(Resources.Load<AnimationClip>("Animation/Player/Dash"))
-        .SetCountDown(1f)
-        .SetID(3)
-        .Build();
-        _entity.SkillMgr.AddSkill(xSkillCore);
     }
 
     public override void RegisterEvents()
@@ -34,13 +28,12 @@ public class XDashComponent : XComponent, IState
 
     private void OnEventAction(EventArgs e)
     {
-        var xSkillCore = _entity.SkillMgr.GetSkill(3);
-        if (xSkillCore.IsCD)
-            return;
         DashEventArgs args = e as DashEventArgs;
         range = args.DashRange;
         speed = args.DashSpeed;
-        _entity.stateMachine.TransitionTo(StateType.Dash);
+        _entity.OverrideAnimationClip("Skill", args.AnimationClip);
+
+        _entity.stateMachine.TransitionTo(this);
     }
     public void OnEnter()
     {
@@ -49,10 +42,7 @@ public class XDashComponent : XComponent, IState
         startPos = _entity.transform.position;
         curPos = startPos;
         disableTimer = 0.1f;
-        var xSkillCore = _entity.SkillMgr.GetSkill(3);
-        _entity.OverrideAnimationClip("Skill", xSkillCore.SkillClip);
         _entity.animator.SetBool("Attack", true);
-        xSkillCore.Fire();
     }
 
     public void UpdateAction()

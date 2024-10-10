@@ -4838,8 +4838,9 @@ GameObject:
   - component: {fileID: 5570395778051887690}
   - component: {fileID: 853952523920894227}
   - component: {fileID: 7843961023426626199}
+  - component: {fileID: 7539897523534697882}
   m_Layer: 0
-  m_Name: Magic fire
+  m_Name: MagicFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9688,6 +9689,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExplosionVFX: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
+  _collider: {fileID: 0}
+  rb2d: {fileID: 0}
 --- !u!58 &7843961023426626199
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9704,6 +9707,19 @@ CircleCollider2D:
   m_Offset: {x: -0.025578737, y: 0.008526266}
   serializedVersion: 2
   m_Radius: 0.24079937
+--- !u!114 &7539897523534697882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5797395870396162840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e110db504ed23246a35e0f391fa6760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  existTime: 2
 --- !u!1 &5797418144606666256
 GameObject:
   m_ObjectHideFlags: 0

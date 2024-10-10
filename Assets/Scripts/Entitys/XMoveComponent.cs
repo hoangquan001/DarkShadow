@@ -24,10 +24,9 @@ public class XMoveComponent : XComponent, IState
     }
     private void OnMove(EventArgs e)
     {
-        _entity.stateMachine.TransitionTo(StateType.Move);
-
         MoveEventArgs args = e as MoveEventArgs;
-        // _entity.ApplyMove(args.dir);
+        
+        _entity.stateMachine.TransitionTo(this);
     }
 
     public void OnEnter() { }

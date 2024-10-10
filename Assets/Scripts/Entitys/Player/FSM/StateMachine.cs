@@ -7,7 +7,6 @@ using UnityEngine;
 public class StateMachine
 {
     XEntity entity;
-    public Dictionary<StateType, IState> DirStates = new Dictionary<StateType, IState>();
     IState curState;
     IState defaultState;
     public float startTime = 0;
@@ -39,20 +38,21 @@ public class StateMachine
         curState = null;
     }
 
-    public void addState(StateType stateId, IState state)
+    // public void addState(StateType stateId, IState state)
+    // {
+    //     DirStates[stateId] = state;
+    // }
+    public void SetDefaultState(IState State)
     {
-        DirStates[stateId] = state;
-    }
-    public void SetDefaultState(StateType stateId)
-    {
-        defaultState = DirStates[stateId];
+        defaultState = State;
         curState = defaultState;
+        curState.OnEnter();
     }
 
-    public void TransitionTo(StateType nextStateId)
+    public void TransitionTo(IState State)
     {
         curState.OnExit();
-        curState = DirStates[nextStateId];
+        curState = State;
         curState.OnEnter();
         startTime = Time.time;
     }

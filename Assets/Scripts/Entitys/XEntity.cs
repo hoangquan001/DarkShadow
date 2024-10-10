@@ -8,8 +8,13 @@ public enum EntityType { None = 0, Player = 1, NPC = 2 };
 public class XEntity : XObject
 {
     public StateMachine stateMachine;
+    [HideInInspector]
     public Rigidbody2D rb2d;
+    [HideInInspector]
+
     public Collider2D _collider;
+    [HideInInspector]
+
     public Animator animator;
     protected XSkillMgr _skillMgr;
     public Face face = Face.Right;
@@ -32,6 +37,8 @@ public class XEntity : XObject
             return _attributes;
         }
     }
+
+    public bool LockMovement { get; set; } = false;
     public XEntity()
     {
         stateMachine = new StateMachine(this);
@@ -47,7 +54,7 @@ public class XEntity : XObject
     }
     public override void OnCreate()
     {
-        
+
     }
     public float groundDistance = 0.1f;
 
@@ -55,7 +62,7 @@ public class XEntity : XObject
     public override void Update()
     {
         base.Update();
-        animator.SetBool("Ground", IsGrounded());
+        animator?.SetBool("Ground", IsGrounded());
         stateMachine.Update();
         _skillMgr.Update();
     }
@@ -79,12 +86,15 @@ public class XEntity : XObject
     }
     public void Move(Vector2 dir, float speed)
     {
-        float xVelocity = rb2d.velocity.x;
-        xVelocity = dir.x * speed;
-        rb2d.velocity = new Vector2(xVelocity, rb2d.velocity.y * dir.y);
-        if (dir.x != 0)
+        if (!LockMovement)
         {
-            Rotation(direct: dir.x > 0 ? 1 : -1);
+            float xVelocity = rb2d.velocity.x;
+            xVelocity = dir.x * speed;
+            rb2d.velocity = new Vector2(xVelocity, rb2d.velocity.y * dir.y);
+            if (dir.x != 0)
+            {
+                Rotation(direct: dir.x > 0 ? 1 : -1);
+            }
         }
 
     }
@@ -111,7 +121,7 @@ public class XEntity : XObject
     public void Idle()
     {
         IdleEventArgs IdleArgs = XEventArgsMgr.GetEventArgs<IdleEventArgs>();
-        @FireEvent(IdleArgs);
+        FireEvent(IdleArgs);
     }
     public void OverrideAnimationClip(string stateName, AnimationClip clip)
     {
@@ -125,6 +135,10 @@ public class XEntity : XObject
         {
             Debug.LogError("Original animation or new clip not found!");
         }
+
+    }
+    public virtual void FireBullet(XProjectile xProjectile)
+    {
 
     }
 }

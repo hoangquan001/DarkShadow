@@ -22,7 +22,7 @@ public class XFallComponent : XComponent, IState
 
     private void OnFall(EventArgs e)
     {
-        _entity.stateMachine.TransitionTo(StateType.Fall);
+            _entity.stateMachine.TransitionTo(this);
 
     }
 

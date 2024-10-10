@@ -35,14 +35,7 @@ public class XPlayer : XEntity
         var xDashComponent = AddXComponent(XComponent.CreateComponent<XDashComponent>());
         var xJumpComponent = AddXComponent(XComponent.CreateComponent<XJumpComponent>());
         var xFallComponent = AddXComponent(XComponent.CreateComponent<XFallComponent>());
-        stateMachine.addState(StateType.Idle, xIdleComponent as IState);
-        stateMachine.addState(StateType.Move, xMoveComponent as IState);
-        stateMachine.addState(StateType.Dash, xDashComponent as IState);
-        stateMachine.addState(StateType.Jump, xJumpComponent as IState);
-        stateMachine.addState(StateType.Fall, xFallComponent as IState);
-        stateMachine.addState(StateType.Skill, xSkillComponent as IState);
-        stateMachine.SetDefaultState(StateType.Idle);
-        // stateMachine.addState(StateType.Jump, xSkillComponent as IState);
+        stateMachine.SetDefaultState(xIdleComponent as IState);
     }
 
     bool CheckSkill()
@@ -50,11 +43,7 @@ public class XPlayer : XEntity
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            DashEventArgs @event = XEventArgsMgr.GetEventArgs<DashEventArgs>();
-            @event.DashRange = Attributes.GetAttributeValue(AttributeType.DashRange);
-            @event.DashSpeed = Attributes.GetAttributeValue(AttributeType.SpeedDash);
-            @FireEvent(@event);
-            return true;
+            return SkillMgr.CastSkill(6);
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -72,7 +61,7 @@ public class XPlayer : XEntity
         {
             JumpEventArgs jumpArgs = XEventArgsMgr.GetEventArgs<JumpEventArgs>();
             jumpArgs.IsJumping = true;
-            @FireEvent(jumpArgs);
+            FireEvent(jumpArgs);
             return true;
 
         }
@@ -83,12 +72,17 @@ public class XPlayer : XEntity
         if (rb2d.velocity.y < 0 && !IsGrounded())
         {
             FallEventArgs fallArgs = XEventArgsMgr.GetEventArgs<FallEventArgs>();
-            @FireEvent(fallArgs);
+            FireEvent(fallArgs);
             return true;
 
         }
         return false;
 
+    }
+    public override void FireBullet(XProjectile xProjectile)
+    {
+        xProjectile.Fire(this, transform.Find("FirePoint").position, 50, Vector2.right*(int)face, 10);
+        xProjectile.SetLayer(gameObject.layer);
     }
 
     public override void Update()
@@ -111,7 +105,7 @@ public class XPlayer : XEntity
                 {
                     MoveEventArgs MoveEventArgs = XEventArgsMgr.GetEventArgs<MoveEventArgs>();
                     MoveEventArgs.direction = movement;
-                    @FireEvent(MoveEventArgs);
+                    FireEvent(MoveEventArgs);
                 }
                 CheckSkill();
                 CheckJump();
@@ -122,13 +116,13 @@ public class XPlayer : XEntity
                 {
                     IdleEventArgs IdleArgs = XEventArgsMgr.GetEventArgs<IdleEventArgs>();
                     IdleArgs.dir = movement;
-                    @FireEvent(IdleArgs);
+                    FireEvent(IdleArgs);
                 }
                 else if (movement.x != (int)face)
                 {
                     MoveEventArgs MoveEventArgs = XEventArgsMgr.GetEventArgs<MoveEventArgs>();
                     MoveEventArgs.direction = movement;
-                    @FireEvent(MoveEventArgs);
+                    FireEvent(MoveEventArgs);
                 }
                 CheckSkill();
                 CheckJump();
@@ -143,7 +137,7 @@ public class XPlayer : XEntity
                 if (IsGrounded() && Time.time - stateMachine.startTime > 0.5f)
                 {
                     IdleEventArgs IdleArgs = XEventArgsMgr.GetEventArgs<IdleEventArgs>();
-                    @FireEvent(IdleArgs);
+                    FireEvent(IdleArgs);
                 }
                 break;
             case StateType.Fall:
@@ -151,7 +145,7 @@ public class XPlayer : XEntity
                 if (IsGrounded())
                 {
                     IdleEventArgs IdleArgs = XEventArgsMgr.GetEventArgs<IdleEventArgs>();
-                    @FireEvent(IdleArgs);
+                    FireEvent(IdleArgs);
                 }
 
                 break;

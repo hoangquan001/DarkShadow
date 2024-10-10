@@ -14,7 +14,7 @@ public class XIdleComponent : XComponent, IState
 
     private void OnEventAction(EventArgs e)
     {
-        _entity.stateMachine.TransitionTo(StateType.Idle);
+        _entity.stateMachine.TransitionTo(this);
 
     }
 

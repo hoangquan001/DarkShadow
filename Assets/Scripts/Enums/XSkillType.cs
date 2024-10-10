@@ -2,5 +2,5 @@ public enum XSkillType
 {
     Dash,
     FireMagic,
-    Normal,
+    NormalAttack,
 }

@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,13 +152,8 @@ Transform:
   m_Children:
   - {fileID: 232664710}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &30179002 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5130439495576666129, guid: de8d78760b18c714698fb575ea0f1ba3, type: 3}
-  m_PrefabInstance: {fileID: 334086804}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &36918123
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,23 +791,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1427884443200802476, guid: 0a3b73e6c1cf5a345ad1936befa44506, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000017166138
+      value: -0.00000015569992
       objectReference: {fileID: 0}
     - target: {fileID: 1427884443200802476, guid: 0a3b73e6c1cf5a345ad1936befa44506, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.08013
+      value: -3.2701306
       objectReference: {fileID: 0}
     - target: {fileID: 3997778350244505255, guid: 0a3b73e6c1cf5a345ad1936befa44506, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 30179002}
+      objectReference: {fileID: 1583260099}
     - target: {fileID: 4272781950288256012, guid: 0a3b73e6c1cf5a345ad1936befa44506, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4272781950288256012, guid: 0a3b73e6c1cf5a345ad1936befa44506, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.799983
+      value: 0.00000015569992
       objectReference: {fileID: 0}
     - target: {fileID: 4272781950288256012, guid: 0a3b73e6c1cf5a345ad1936befa44506, type: 3}
       propertyPath: m_LocalPosition.y
@@ -870,7 +864,7 @@ PrefabInstance:
     - target: {fileID: 4272781951153698302, guid: 0a3b73e6c1cf5a345ad1936befa44506, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 30179002}
+      objectReference: {fileID: 0}
     - target: {fileID: 4272781951153698303, guid: 0a3b73e6c1cf5a345ad1936befa44506, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
@@ -1068,6 +1062,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2775827948787579249, guid: de8d78760b18c714698fb575ea0f1ba3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775827948787579249, guid: de8d78760b18c714698fb575ea0f1ba3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.89
+      objectReference: {fileID: 0}
     - target: {fileID: 5130439495576666129, guid: de8d78760b18c714698fb575ea0f1ba3, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1144,7 +1146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &360693943
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1618,6 +1620,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 104380029650907967, guid: 260ccd3b9c91a374398705db5e107b10, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 260ccd3b9c91a374398705db5e107b10, type: 3}
 --- !u!1 &643693836
@@ -2037,6 +2043,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Initialization
       objectReference: {fileID: 0}
+    - target: {fileID: 5863748939324325718, guid: 17b8607cbc93eee4886eb7129b6fcd64, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b8607cbc93eee4886eb7129b6fcd64, type: 3}
 --- !u!1 &1154823113
@@ -2224,7 +2234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &1186206009
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -3131,7 +3141,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7019,6 +7029,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &1583260099 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2775827948787579249, guid: de8d78760b18c714698fb575ea0f1ba3, type: 3}
+  m_PrefabInstance: {fileID: 334086804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1649791667
 GameObject:
   m_ObjectHideFlags: 0
@@ -7380,6 +7395,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music
       objectReference: {fileID: 0}
+    - target: {fileID: 9059157918077847558, guid: 8e5ee9f4344b6964c91e225f09aa3894, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e5ee9f4344b6964c91e225f09aa3894, type: 3}
 --- !u!1001 &1979053120
@@ -7699,9 +7718,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 8739005016615668443, guid: 51ae1beb9f018b04f82702ddcdf53c6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8739005016615668444, guid: 51ae1beb9f018b04f82702ddcdf53c6d, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8739005016615668444, guid: 51ae1beb9f018b04f82702ddcdf53c6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7891,4 +7914,4 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0

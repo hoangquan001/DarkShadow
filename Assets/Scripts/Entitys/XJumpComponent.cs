@@ -26,7 +26,7 @@ public class XJumpComponent : XComponent, IState
     }
     private void OnJump(EventArgs e)
     {
-        _entity.stateMachine.TransitionTo(StateType.Jump);
+        _entity.stateMachine.TransitionTo(this);
     }
 
     public void OnEnter()

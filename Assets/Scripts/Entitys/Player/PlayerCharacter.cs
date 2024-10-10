@@ -126,14 +126,6 @@ public class PlayerCharacter : MonoBehaviour
 
     public void playMagicSkill()
     {
-        float ang = Mathf.Sign(transform.localScale.x) == 1 ? 0 : 180;
-        GameObject gameObject = Instantiate(magicFire, firePoint.position, Quaternion.Euler(0, 0, ang));
-        ProjectileController projectile = gameObject.GetComponent<ProjectileController>();
-        projectile.setDirect((int)Mathf.Sign(transform.localScale.x));
-        projectile.setDamage(magicDamage);
-        projectile.addForce(this.forceMagic);
-        ManaPoint -= magicSkillMana;
-        ;
 
     }
 
