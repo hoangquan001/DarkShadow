@@ -38,7 +38,7 @@ public class PlayerCharacter : MonoBehaviour
     [Header("Gameobject")]
     [SerializeField] private GameObject magicFire = null;
     [SerializeField] private Transform firePoint = null;
-    private PlayerVFX vFXController;
+    // private PlayerVFX vFXController;
 
     public void SaveData(ref GameData data)
     {
@@ -67,7 +67,7 @@ public class PlayerCharacter : MonoBehaviour
 
         curHealthPoint = healthPoint;
         curManaPoint = ManaPoint;
-        vFXController = GetComponent<PlayerVFX>();
+        // vFXController = GetComponent<PlayerVFX>();
         //vFXController.stopTrailVFX();
         UI_GameHUD.Instance.setMaxHealth(healthPoint);
         UI_GameHUD.Instance.setMaxMana(ManaPoint);
@@ -101,7 +101,7 @@ public class PlayerCharacter : MonoBehaviour
         if (hit.collider != null)
         {
             hit.collider.GetComponent<IMonsters>().takeDamage(attackDamage);
-            vFXController.playExplosion(firePoint.transform.position);
+            // vFXController.playExplosion(firePoint.transform.position);
             healMP(10);
         }
     }
@@ -117,10 +117,10 @@ public class PlayerCharacter : MonoBehaviour
 
     public void setActiveTrail(bool value)
     {
-        if (value)
-            vFXController.playTrailVFX();
-        else
-            vFXController.stopTrailVFX();
+        // if (value)
+        //     vFXController.playTrailVFX();
+        // else
+        //     vFXController.stopTrailVFX();
 
     }
 

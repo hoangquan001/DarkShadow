@@ -13,9 +13,11 @@ enum SkillType
 }
 public class XSkillMgr
 {
-    private XEntity host;
+    private EntityController host;
     private Dictionary<uint, XSkillCore> skillDir = new Dictionary<uint, XSkillCore>();
-    public XSkillMgr( XEntity host)
+    public XSkillCore skillCasting = null;
+    public bool IsCastingSkill { get { return skillCasting != null; } }
+    public XSkillMgr(EntityController host)
     {
         this.host = host;
         XSkillCore core1 = new XSkillCore();
@@ -31,6 +33,12 @@ public class XSkillMgr
         foreach (var core1 in skillDir.Values)
         {
             core1.Update();
+            if(core1 == skillCasting && !core1.IsCastingSkill)
+            {
+                skillCasting.Finish();
+                host.CurState = EntityState.Idle;
+                skillCasting = null;
+            }
         }
     }
     public void AddSkill(XSkillCore core)
@@ -58,9 +66,11 @@ public class XSkillMgr
 
     public bool CastSkill(uint id)
     {
-        SkillEventArgs @event = XEventArgsMgr.GetEventArgs<SkillEventArgs>();
-        @event.SkillId  = (int)id;
-        host.FireEvent(@event);
+        if(!CanCastSkill(id)) return false;
+        XSkillCore xSkillCore =  GetSkill(id);
+        xSkillCore.Fire();
+        skillCasting = xSkillCore;
+        host.CurState = EntityState.Attack;
         return true;
     }
 

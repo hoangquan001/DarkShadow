@@ -59,14 +59,14 @@
     <UnityVersion>2021.3.41f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\ACER\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.0.4\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\gihot\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Public\Log.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Public\InvokeOnHotReloadLocal.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Public\HotReloadLogging.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Public\LogLevel.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Public\InvokeOnHotReload.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Public\Log.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Public\LogLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.singularitygroup.hotreload\Runtime\Public\SingularityGroup.HotReload.Runtime.Public.asmdef" />
@@ -404,10 +404,6 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
       <Private>False</Private>
@@ -442,14 +438,6 @@
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.4.3\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">

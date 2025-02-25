@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5775692313667773440}
   - component: {fileID: 5775692313667773443}
   - component: {fileID: 5775692313667773442}
+  - component: {fileID: 6265399780176209587}
   m_Layer: 7
   m_Name: Keeper
   m_TagString: Untagged
@@ -90,7 +91,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &5775692313667773441
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -107,7 +108,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5775692313667773440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +122,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54aa99aa7d074245a0c55f9ff656af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Velocity: {x: 0, y: 0}
+  WalkSpeed: 4
+  SprintSpeed: 15
+  RunSpeed: 10
+  Acceleration: 20
+  JumpForce: 5
+  GravityScale: 1
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  Face: 1
+  animator: {fileID: 0}
   attackRange: {x: 2, y: 0}
   attackArea: {x: 8, y: 4.23}
   speedMove: 3
@@ -177,3 +191,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8616352, y: 2.6164808}
   m_EdgeRadius: 0
+--- !u!114 &6265399780176209587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775692313667773445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210cffe1d4b77f44182da398a1dd4f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -68,12 +68,12 @@ public class UIRoot : MonoBehaviour
     // Update is called once per frame
     public void OnFinishLoad()
     {
-        UI_Loading.Instance.OnDoneLoading();
+        UILoading.Instance.OnDoneLoading();
 
     }
     public void OnLoad()
     {
-        UI_Loading.Instance.OnLoading();
+        UILoading.Instance.OnLoading();
 
     }
 

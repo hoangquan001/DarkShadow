@@ -4824,12 +4824,12 @@ GameObject:
   - component: {fileID: 2775827947058380928}
   - component: {fileID: 2775827947058380935}
   m_Layer: 6
-  m_Name: smoke
+  m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2775827947058380934
 Transform:
   m_ObjectHideFlags: 0
@@ -14504,7 +14504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2775827947216513454}
   m_Layer: 6
-  m_Name: VFX
+  m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14568,11 +14568,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2775827948787579249}
+  - component: {fileID: 4538012651372827783}
+  - component: {fileID: 1583260105}
   - component: {fileID: 2775827948787579248}
   - component: {fileID: 2775827948787579260}
   - component: {fileID: 2775827948787579251}
   - component: {fileID: 2775827948787579262}
-  - component: {fileID: 2775827948787579208}
+  - component: {fileID: 1583260106}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -14598,6 +14600,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4538012651372827783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775827948787579255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b08d004cc2baa42af0ec47973acd9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  host: {fileID: 0}
+  attributeList:
+  - attribute: 5
+    value: 0
+  - attribute: 6
+    value: 0
+  - attribute: 9
+    value: 0
+  - attribute: 9
+    value: 0
+--- !u!114 &1583260105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775827948787579255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237c8d61f3f02ac4faaf2047b7e32d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocity: {x: 0, y: 0}
+  WalkSpeed: 4
+  SprintSpeed: 15
+  RunSpeed: 10
+  Acceleration: 20
+  JumpForce: 5
+  GravityScale: 1
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  Face: 1
+  animator: {fileID: 0}
+  DashSpeed: 50
+  DustEffect: {fileID: 3135811591116303949}
+  ExplosionEffect: {fileID: 0}
+  TrailEffect: {fileID: 3304513896068411211}
 --- !u!212 &2775827948787579248
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14718,7 +14770,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2775827948787579208
+--- !u!114 &1583260106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14727,16 +14779,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2775827948787579255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63652e4b9188f7543a57b593b064efc7, type: 3}
+  m_Script: {fileID: 11500000, guid: 210cffe1d4b77f44182da398a1dd4f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2d: {fileID: 0}
-  _collider: {fileID: 0}
-  animator: {fileID: 0}
-  face: 1
-  movement: {x: 0, y: 0}
-  entityType: 1
-  groundDistance: 0.1
 --- !u!1 &3135811591116303949
 GameObject:
   m_ObjectHideFlags: 0
@@ -14754,7 +14799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8970881265387390580
 Transform:
   m_ObjectHideFlags: 0
@@ -14763,7 +14808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3135811591116303949}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.075, y: -1.607, z: -0.21}
+  m_LocalPosition: {x: -0.311, y: -1.607, z: -0.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19567,7 +19612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5323248755083685641
 Transform:
   m_ObjectHideFlags: 0

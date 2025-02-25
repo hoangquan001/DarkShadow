@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class Damageable : MonoBehaviour,IMonsters
+public class Damageable : MonoBehaviour
 {
     public float HealthPoint =100;
     public virtual void takeDamage(float damage)
@@ -23,6 +23,4 @@ public class Damageable : MonoBehaviour,IMonsters
             DestroyObject();
         }
     }
-         
-
 }

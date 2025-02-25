@@ -7,7 +7,6 @@ public class XProjectile : XObject
 {
     // Start is called before the first frame update
     [SerializeField] GameObject ExplosionVFX;
-    XObject host;
     public Collider2D _collider;
     public Rigidbody2D rb2d;
     Vector2 direct ;
@@ -18,9 +17,8 @@ public class XProjectile : XObject
         rb2d = GetComponent<Rigidbody2D>();
 
     }
-    public virtual void Fire(XObject host, Vector3 pos , float speed, Vector2 direct, int damage)
+    public virtual void Fire(EntityController host, Vector3 pos , float speed, Vector2 direct, int damage)
     {
-        this.host = host;
         this.direct = direct;
         this.damage = damage;
         transform.position = pos;
@@ -33,7 +31,7 @@ public class XProjectile : XObject
         Instantiate(ExplosionVFX, transform.position, Quaternion.identity);
         // if (collision.gameObject.layer == LayerMask.NameToLayer("Monsters"))
         // {
-        var monsters = collision.gameObject.GetComponent<XEntity>();
+        var monsters = collision.gameObject.GetComponent<EntityController>();
         //     monsters.takeDamage(damage);
         //     monsters.setDirect(-direct);
         // }

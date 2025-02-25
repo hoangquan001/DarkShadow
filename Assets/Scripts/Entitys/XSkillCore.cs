@@ -3,18 +3,21 @@ using System;
 using UnityEngine;
 
 public delegate bool EndSkillCondition();
+public delegate bool OnSkillEnterState(XSkillCore xSkillCore);
 public class XSkillCore
 {
     public uint ID;
-    public Action action;
-    public XEntity Caster { get; set; }
-    public bool NeedLockMovement { get; set; } = false;
+    public EntityController Caster { get; set; }
+    public bool LockMovement { get; set; } = false;
     public float CountDown = 5;
-    float CDTimer = 0;
-    float actionTimer = 0;
     public float actionTime = 0;
     public XSkillType SkillType;
+    public event OnSkillEnterState onDoSkill;
+    public event OnSkillEnterState onBeginSkill;
+    public event OnSkillEnterState onEndSkill;
+    private float CDTimer = 0;
     private AnimationClip _skillClip;
+    private float actionTimer = 0;
     float SkillTime
     {
         get
@@ -76,20 +79,22 @@ public class XSkillCore
         }
     }
 
-    public void Begin()
+    private void Begin()
     {
         CDTimer = CountDown;
         SkillTimer = SkillTime;
         actionTimer = actionTime;
-    }
-    public void Cancel()
-    {
-        CDTimer = 0;
-        SkillTimer = 0;
+        onBeginSkill?.Invoke(this);
+        Caster.OverrideAnimationClip("Skill", SkillClip);
+        Caster.animator.SetBool("Attack", true);
     }
 
     public void Finish()
     {
+        SkillTimer = 0;
+        onEndSkill?.Invoke(this);
+        Caster.animator.SetBool("Attack", false);
+
     }
 
     public void Fire()
@@ -99,20 +104,7 @@ public class XSkillCore
 
     private void DoSkillAction()
     {
-        switch(SkillType)
-        {
-            case XSkillType.Dash:
-                DashEventArgs args = XEventArgsMgr.GetEventArgs<DashEventArgs>();
-                args.DashRange = 5;
-                args.DashSpeed = 50;
-                args.AnimationClip = SkillClip;
-                Caster.FireEvent(args);
-                break;
-            case XSkillType.FireMagic:
-                GameObject go = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Object/MagicFire"));
-                Caster.FireBullet(go.GetComponent<XProjectile>());
-                break;
-        }
+        onDoSkill?.Invoke(this);
     }
     // public EndSkillCondition()
 }
@@ -120,8 +112,9 @@ public class XSkillCore
 public class XSkillCoreBuilder
 {
     XSkillCore xSkillCore ;
-    public XSkillCoreBuilder() {
+    public XSkillCoreBuilder(EntityController entity) {
         xSkillCore = new XSkillCore();
+        xSkillCore.Caster = entity;
     }
     public XSkillCoreBuilder SetAnimationClip(AnimationClip clip)
     {
@@ -146,10 +139,10 @@ public class XSkillCoreBuilder
     }
     public XSkillCoreBuilder LockMovement()
     {
-        xSkillCore.NeedLockMovement = true;
+        xSkillCore.LockMovement = true;
         return this;
     }
-    public XSkillCoreBuilder SetCaster(XEntity caster)
+    public XSkillCoreBuilder SetCaster(EntityController caster)
     {
         xSkillCore.Caster = caster;
         return this;
@@ -163,5 +156,10 @@ public class XSkillCoreBuilder
     public XSkillCore Build()
     {
         return xSkillCore;
+    }
+    public XSkillCoreBuilder SetAction(OnSkillEnterState action)
+    {
+        xSkillCore.onDoSkill += action;
+        return this;
     }
 }

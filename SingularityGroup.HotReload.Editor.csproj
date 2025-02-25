@@ -59,85 +59,85 @@
     <UnityVersion>2021.3.41f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\ACER\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.0.4\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\gihot\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\HotReloadSuggestionsHelper.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ServerHealthCheck.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\Styles\HotReloadWindowStyles.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\HotReloadBuildHelper.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Installation\UpdateUtility.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\ICliController.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\HotReloadCli.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadPrefs.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\IFileIO.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Installation\InstallUtility.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Buttons\OpenDialogueButton.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Attribution\Attribution.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\RequiredSettings\RequiredSettingChecker.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\HotReloadOptionsSection.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\AllowAndroidAppToMakeHttpRequestsOption.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\WindowsCliController.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\ExposeServerOption.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\ProjectPart.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\OsxCliController.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\ProjectGeneration.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Installation\DownloadUtility.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\EditorTextures.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\PostbuildModifyAndroidManifest.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\HotReloadWindow.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\UnitySettingsHelper.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\PostbuildSendProjectState.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\IncludeInBuildOption.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\IHotReloadProjectGenerationPostProcessor.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\InspectorFreezeFix.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadState.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\Helpers\RedeemLicenseHelper.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\ShowOnStartupEnum.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\GUIHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\BuildGenerateBuildInfo.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\FileIOProvider.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\HotReloadRunTab.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\HotReloadSettingsTab.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\BuildInfoHelper.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\EditorWindowHelper.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\HotReloadBuildHelper.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\Util\FileSystemUtil.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\Base\HotReloadTabBase.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CompileChecker\ICompileChecker.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadSettingsEditor.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\StartArgs.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\ProjectGenenerationPostProcessor.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Buttons\OpenURLButton.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\GUIDProvider.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\IGUIDGenerator.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Versioning\PackageUpdateChecker.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\AssemblyOmission.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\Base\OptionInterfaces.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\ProjectGenerationFlag.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CompileChecker\DefaultCompileChecker.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\Base\HotReloadOptionBase.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\Spinner.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\PrebuildIncludeResources.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\EditorCodePatcher.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\AllowAndroidAppToMakeHttpRequestsOption.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Constants.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\FallbackCliController.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\SolutionGuidGenerator.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\HotReloadAboutTab.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CompileChecker\LegacyCompileChecker.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Attribution\VSAttribution.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\EditorIndicationState.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\Util\StringUtils.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\HotReloadTimelineHelper.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Versioning\SemVer.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\IGUIComponent.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\CliUtils.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\BuildGenerateBuildInfo.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadOverlay.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\LinuxCliController.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\GitUtil.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Installation\ExponentialBackoff.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadEventPopup.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Demo\EditorDemo.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadPrefs.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Buttons\OpenDialogueButton.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\IFileIO.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Installation\DownloadUtility.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\ICliController.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Installation\ServerDownloader.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\Base\HotReloadTabBase.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\ExposeServerOption.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadOverlay.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadEventPopup.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Attribution\Attribution.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\EditorIndicationState.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\Base\HotReloadOptionBase.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\Util\FileSystemUtil.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\ProjectGenenerationPostProcessor.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\AssemblyOmission.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\HotReloadCli.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\IGUIComponent.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\EditorTextures.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\BuildInfoHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Demo\EditorDemo.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\ProjectGenerationFlag.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\HotReloadAboutTab.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\HotReloadOptionsSection.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\SolutionGuidGenerator.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Installation\ExponentialBackoff.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\HotReloadSuggestionsHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Constants.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\InspectorFreezeFix.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\GUIHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CompileChecker\ICompileChecker.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\HotReloadTimelineHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\PostbuildSendProjectState.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\IHotReloadProjectGenerationPostProcessor.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Buttons\OpenURLButton.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\EditorWindowHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\ProjectGeneration.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Helpers\UnitySettingsHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\IncludeInBuildOption.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\GUIDProvider.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CompileChecker\LegacyCompileChecker.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadState.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\Util\StringUtils.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ServerHealthCheck.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\OsxCliController.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\GitUtil.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\Styles\HotReloadWindowStyles.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\IGUIDGenerator.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Options\Base\OptionInterfaces.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Installation\InstallUtility.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\Helpers\RedeemLicenseHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\CliUtils.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\HotReloadSettingsEditor.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\ShowOnStartupEnum.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\StartArgs.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Versioning\PackageUpdateChecker.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\ProjectGeneration\ProjectPart.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Attribution\VSAttribution.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\LinuxCliController.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\PostbuildModifyAndroidManifest.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Versioning\SemVer.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\RequiredSettings\RequiredSettingChecker.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CompileChecker\DefaultCompileChecker.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\EditorCodePatcher.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\GUI\Tabs\HotReloadSettingsTab.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\PlayerBuild\PrebuildIncludeResources.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\Window\HotReloadWindow.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Editor\CLI\FallbackCliController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.singularitygroup.hotreload\Editor\SingularityGroup.HotReload.EditorDependencies.dll" />
@@ -480,10 +480,6 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
       <Private>False</Private>
@@ -506,14 +502,6 @@
     </Reference>
     <Reference Include="SingularityGroup.HotReload.EditorDependencies">
       <HintPath>Packages\com.singularitygroup.hotreload\Editor\SingularityGroup.HotReload.EditorDependencies.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="mscorlib">

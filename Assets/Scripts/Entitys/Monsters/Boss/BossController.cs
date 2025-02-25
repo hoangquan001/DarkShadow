@@ -7,12 +7,7 @@ namespace DarkShadow
     {
         talk1, idle, hidden, jumpAttack, spinAttack, stun, talk2, dead
     }
-
-    public enum BossAttackFSM
-    {
-
-    }
-    public class BossController : MonoBehaviour, IMonsters
+    public class BossController : MonoBehaviour
     {
         // Start is called before the first frame update
         public Vector2 LeftPoint;

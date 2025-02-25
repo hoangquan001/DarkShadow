@@ -66,13 +66,13 @@ public class SceneController : MonoBehaviour
 
         for (float i = 0; i < 0.25f; i += 0.05f)
         {
-            UI_Loading.Instance._slider.value = i * 2;
+            UILoading.Instance._slider.value = i * 2;
             yield return new WaitForSeconds(0.05f);
         }
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(mapidx);
         while (!asyncLoad.isDone)
         {
-            UI_Loading.Instance._slider.value = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+            UILoading.Instance._slider.value = Mathf.Clamp01(asyncLoad.progress / 0.9f);
             yield return null;
         }
         UIRoot.Instance.OnFinishLoad();

@@ -59,44 +59,44 @@
     <UnityVersion>2021.3.41f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\ACER\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.0.4\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\gihot\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\ThreadUtility.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PlayerCodePatcher.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MonoBehaviours\Prompts.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PlayerEntrypoint.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\BurstChecker.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\RequestHelper.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MethodUtils.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MonoMethod.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\HotReloadSettingsObject.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\IpHelper.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MethodCompatiblity.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\ServerHandshake.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Burst\JobHotReloadUtility.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\HttpClientUtils.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PersistencePaths.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\OnHotReloadDispatch.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MonoBehaviours\ConnectionDialog.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PackageConst.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\SymbolResolver.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\TaskExtensions.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MonoBehaviours\QuestionDialog.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Demo\Scripts\HotReloadBasicDemo.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\SymbolResolvingFailedException.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\UnityHelper.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\IServerHealthCheck.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\AppCallbackListener.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\InstallQRDialog.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\BuildInfo.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\RequestHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Demo\Scripts\HotReloadBurstJobsDemo.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PlayerEntrypoint.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MonoBehaviours\RetryDialog.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\ServerHealthCheck.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MethodPatchResponsesConverter.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PatchServerInfo.cs" />
-    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Demo\Scripts\HotReloadBurstJobsDemo.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MonoMethod.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\SymbolResolver.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\TaskExtensions.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Burst\JobHotReloadUtility.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PersistencePaths.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Demo\Scripts\IDemo.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MethodPatchResponsesConverter.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\HttpClientUtils.cs" />
     <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\CodePatcher.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MonoBehaviours\ConnectionDialog.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\InstallQRDialog.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PlayerCodePatcher.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\HotReloadSettingsObject.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\IServerHealthCheck.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\ThreadUtility.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PackageConst.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\PatchServerInfo.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\ServerHandshake.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MonoBehaviours\QuestionDialog.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MethodCompatiblity.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\UnityHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\IpHelper.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\AppCallbackListener.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\MonoBehaviours\Prompts.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\Demo\Scripts\HotReloadBasicDemo.cs" />
+    <Compile Include="Packages\com.singularitygroup.hotreload\Runtime\OnHotReloadDispatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.singularitygroup.hotreload\Runtime\Libs\EditorOnly\SingularityGroup.HotReload.RuntimeDependencies.dll" />
@@ -448,14 +448,6 @@
     </Reference>
     <Reference Include="SingularityGroup.HotReload.RuntimeDependencies2020">
       <HintPath>Packages\com.singularitygroup.hotreload\Runtime\Libs\EditorOnly\SingularityGroup.HotReload.RuntimeDependencies2020.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.41f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">

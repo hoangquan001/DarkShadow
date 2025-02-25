@@ -29,7 +29,7 @@ public class UI_MainMenu : MonoBehaviour
 
     void OnClickStart()
     {
-        UI_Loading.Instance.OnLoading();
+        UILoading.Instance.OnLoading();
         SceneController.Instance.PlayGame();
     }
     void OnClickNewGame()

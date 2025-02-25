@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class NPCController : MonoBehaviour
+public class NPCController : EntityController
 {
     
     [SerializeField] GameObject dialog;
@@ -24,13 +24,15 @@ public class NPCController : MonoBehaviour
 
 
     BoxCollider2D box2d;
-    void Awake()
+    public override void Awake()
     {
+        base.Awake();
         box2d = GetComponent<BoxCollider2D>();
         dialog.SetActive(false);
-    }    
-    void Start()
+    }
+    public override void Start()
     {
+        base.Start();
         textBox = dialog.GetComponentInChildren<Text>();
     }
 
@@ -49,8 +51,9 @@ public class NPCController : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        base.Update();
         checkPlayerInSight();
 
         if (Input.GetKeyDown(KeyCode.F)&&playerInSight)
@@ -77,7 +80,7 @@ public class NPCController : MonoBehaviour
                 {
                     state = 1;
                 }
-                showTextHandle();
+                ShowTextHandler();
 
               
             }
@@ -93,7 +96,7 @@ public class NPCController : MonoBehaviour
             if(state == 2)
             {
 
-                showTextHandle();
+                ShowTextHandler();
                 if (isTextRunning == false)
                 {
           
@@ -110,7 +113,7 @@ public class NPCController : MonoBehaviour
             }
             if (state == 4)
             {
-                showTextHandle();
+                ShowTextHandler();
                 if (isTextRunning == false)
                 {
                     PlayerInput.Instance.setActive(true);
@@ -131,7 +134,7 @@ public class NPCController : MonoBehaviour
 
             if (state == 6)
             {
-                showTextHandle();
+                ShowTextHandler();
                 if (isTextRunning == false)
                 {
                     PlayerInput.Instance.setActive(true);
@@ -151,16 +154,13 @@ public class NPCController : MonoBehaviour
 
             if (state == 8)
             {
-                showTextHandle();
+                ShowTextHandler();
             }
-
-
-
         }
     }
 
 
-    void showTextHandle()
+    void ShowTextHandler()
     {
         if (keyNext)
         {
